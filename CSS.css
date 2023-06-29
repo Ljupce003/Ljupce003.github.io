@@ -1,0 +1,349 @@
+body {
+    height: 620px;  width: 1400px;  margin: auto;
+    font-family: sans-serif;
+    background: lightskyblue;
+
+}
+#main{height: 780px; width: 1400px; background: url("Images/vector_background.jpg") no-repeat; background-size: contain ; padding-top: 5px}
+#personal-photo{
+    background: url("Images/IMG_4216.JPG");
+    background-size: 70px;
+
+    position: relative;
+    margin-left: 8px;
+    width: 70px; height: 70px;
+    border-radius: 10%;
+    margin-top: 5px;
+    z-index: 1;
+    border: #33b5c5 solid 4px;
+}
+#personal-photo:hover{
+   background: url("Images/'/'/troll.jpg") no-repeat;
+    background-size: 70px;
+    color: transparent;
+    width: 70px;
+    height: 70px;
+}
+#menu{border-radius: 10px;width: 1297px;position: relative;top: -80px;left: 10px;margin-top: 19px;
+    background: #33b5c5;height: 30px;padding: 15px 10px 0 72px;}
+#menu a{ padding-left: 25px; text-align: center; text-transform: uppercase; text-decoration: none;}
+#menu a:first-of-type{padding-left: 10px;padding-right: 650px;}
+#menu a:hover{color: yellow;}
+.active_link{color: white;}
+.not-active_link{color: #ceceb2;}
+#content_home{
+    background-color: #5a7bd7;
+    border-radius: 30px;
+    padding: 10px;
+    top: 70px;
+    position: relative;
+    margin: auto;
+    width: 1000px;
+    align-content: center;
+}
+#content_home h1{
+    text-align: center;
+    /*background-color: darkblue;*/
+    font-size: 28px;
+    padding: 5px;
+    width: 480px;
+    border-radius: 5px;
+    margin: 10px auto;
+    color: white;
+}
+.line{
+    margin-left: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
+    width: 974px;
+    border-bottom: 3px solid black ;
+}
+#home_text{
+    width: 800px;
+    margin: 15px auto 15px auto;
+    /*background-color: darkblue;*/
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    text-align: center;
+}
+#main-inlined{display: flex}
+#greeklogol,#greeklogol1,#greeklogor,#greeklogor1{height: 50px;padding-top: 8px;position: relative;}
+#greeklogol{left: 9px;}
+#greeklogor1{right: 9px;}
+footer h2{ color: white; margin: 2px 2px 6px;}
+footer{
+    text-align: center;
+    margin: 150px auto auto auto;
+    width: 315px;
+    background-color: royalblue;
+    border-radius: 20px;
+    padding: 8px 15px 15px;
+}
+#contactdiv{display: flex;justify-content: center;}
+#smalll,#smallr{ height: 25px;width: auto;padding: 4px 8px 0 8px;}
+.social{
+    padding: 5px 0 3px;
+    border: 3px solid black;}
+.social  a {
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:2px solid #ccc;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.7;
+}
+
+.social  a:hover {
+    opacity:1;
+}
+#linkot1,#linkot2,#linkot4{
+    width: 40px;
+    height: 40px;
+    background: url("Images/social icons.jpg");
+    background-size: 270px;
+}
+#linkot1{background-position: -23px 115px;}
+#linkot2{background-position: 186px 116px;}
+#linkot3{
+    width: 40px; height: 40px;
+    background: url("Images/GitHub-Mark.png") no-repeat;
+    background-size: 58px;  background-position: -9px -11px;}
+#linkot4{background-position: -23px 59px;}
+#mail{
+    width: 40px; height: 40px;
+    background: url("Images/mail_icon.png") no-repeat;
+    background-size: 58px;  background-position: -9px -11px;}
+
+#biography{
+
+    color: white;
+    background-color: #072b81;
+    border-radius: 30px;
+    padding: 18px;
+    position: relative;
+    left: -435px; bottom: 40px;
+    margin: auto;
+    width: 450px;
+    align-content: center;
+}
+#cityimages{
+    margin-top: -320px;
+    text-align: center;
+    background-color: #072b81;
+    border-radius: 30px;
+    padding: 10px;
+    position: relative;
+    left: 585px;
+top: 10px;
+    width: 300px;
+    align-content: center;
+}
+
+#cityimages p{margin-top: 3px; margin-bottom: 0;color: greenyellow}
+#cityimg{
+width: 300px;
+    height: auto;
+    border-radius: 20px;
+}
+
+#cityimages1{
+    margin-top: -150px;
+    text-align: center;
+    background-color: #072b81;
+    border-radius: 30px;
+    padding: 10px;
+    position: relative;
+    left: 985px;
+    top: 10px;
+    width: 300px;
+    align-content: center;
+}
+#cityimages1 p{margin-top: 3px; margin-bottom: 0;color: greenyellow}
+#oldcityimg{
+width: 300px;
+    height: auto;
+    border-radius: 20px;
+}
+#biography1{
+top: 100px;
+    color: white;
+    background-color: #072b81;
+    border-radius: 25px;
+    padding: 10px;
+    position: relative;
+    margin: -8px auto 10px auto;
+    width: 900px;
+    align-content: center;
+}
+
+#education{
+margin-top: -10px;
+    color: white;
+    background-color: #5d779a;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 110px; bottom: 15px;
+
+    width: 450px;
+    align-content: center;
+}
+
+#education1{
+margin-top: -139px;
+    color: white;
+    background-color: #5d779a;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 525px; bottom: -120px;
+
+    width: 800px;
+    align-content: center;
+}
+#primeschools{
+    margin-top: -300px;
+    top: -50px;
+    left: 710px;
+    text-align: center;
+    background-color: #5d779a;
+    border-radius: 30px;
+    padding: 20px;
+    position: relative;
+
+    width: 430px;
+    align-content: center;
+}
+#primeschools p{width: 190px; color: greenyellow; height: 40px}
+#sch1{
+    display: flex;
+    margin-bottom: 15px;
+}
+#sch1 p{
+    text-align: left;
+    margin-left: 10px;
+}
+#sch2{
+    display: flex;
+    margin-left: 20px;
+}
+#sch2 p{
+    text-align: right;
+    margin-right: 10px;
+}
+#GD{
+    border-radius: 10px;
+    width: 210px;
+    height: 150px;
+}
+#KSB{
+    border-radius: 10px;
+    width: 210px;
+    height: 150px;
+}
+#sec{height: 1px;}
+#finkilogo{
+    border-radius: 10px;
+    position: relative;
+    width: 330px;
+    height: auto;
+    top: -35px;
+    left: 100px;
+}
+
+#cskills{
+    margin-top: -40px;
+    color: white;
+    background-color: #394f88;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 685px; bottom: 15px;
+
+    width: 650px;
+    align-content: center;
+}
+#mltskils{
+    margin-top: -293px;
+    color: white;
+    background-color: #394f88;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 40px; bottom: -105px;
+
+    width: 820px;
+    align-content: center;
+}
+#picsss{
+display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: -187px;
+    color: white;
+    background-color: #394f88;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 91px; bottom: -150px;
+
+    width: 410px;
+    align-content: center;
+}
+#codingpic{margin-right: 5px;}
+#codingpic,#editpic,#electician{
+width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+#editpic{
+    left: 1000px;
+    top: 2px;
+    position: relative;
+}
+
+
+#hobbiies{
+    margin: -40px auto 20px auto;
+text-align: center;
+    color: white;
+    background-color: #3d1685;
+    border-radius: 30px;
+    padding: 1px;
+    position: relative;
+
+    width: 1000px;
+    align-content: center;
+}
+
+#hobbiies1{
+    margin-top: -70px;
+    color: white;
+    background-color: #3d1685;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 23px; bottom: -110px;
+    width: 300px;
+}
+
+
+#hobbypics{
+    display: flex;
+    margin-top: -223px;
+    color: white;
+    background-color: #3d1685;
+    border-radius: 30px;
+    padding: 14px;
+    position: relative;
+    left: 462px; bottom: -75px;
+    width: 775px;
+    justify-content: space-around;
+}
+#basketpic,#hikepic,#footballpic{ height: 200px; width:auto; border-radius: 10px;}
+#basketpic{}
+#hikepic{}
+#footballpic{}
