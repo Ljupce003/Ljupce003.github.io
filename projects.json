@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "portfolio-website",
+    "title": "Personal Portfolio Website",
+    "description": "A fully static personal portfolio website built with HTML, Tailwind CSS, and a Node.js build pipeline. Features a home page, about page, and auto-generated project pages from a JSON data file. Designed for GitHub Pages hosting with SEO-friendly pre-rendered HTML.",
+    "technologies": ["HTML", "Tailwind CSS", "Node.js", "JavaScript"],
+    "github": "https://github.com/Ljupce003/Ljupce003.github.io",
+    "demo": "https://ljupce003.github.io"
+  },
+  {
+    "slug": "student-grade-manager",
+    "title": "Student Grade Manager",
+    "description": "A Java desktop application for managing student grades and academic records. Supports adding students, assigning grades per subject, calculating GPA, and exporting reports. Built with object-oriented principles and a clean Swing-based GUI.",
+    "technologies": ["Java", "OOP", "Swing", "File I/O"],
+    "github": "https://github.com/Ljupce003/student-grade-manager",
+    "demo": ""
+  },
+  {
+    "slug": "algorithm-visualizer",
+    "title": "Algorithm Visualizer",
+    "description": "An interactive web app that visually demonstrates how common sorting and pathfinding algorithms work step-by-step. Supports Bubble Sort, Merge Sort, Quick Sort, and Dijkstra's algorithm. Useful as an educational tool for understanding algorithmic complexity.",
+    "technologies": ["JavaScript", "HTML", "CSS", "Canvas API"],
+    "github": "https://github.com/Ljupce003/algorithm-visualizer",
+    "demo": "https://ljupce003.github.io/algorithm-visualizer"
+  },
+  {
+    "slug": "weather-dashboard",
+    "title": "Weather Dashboard",
+    "description": "A responsive weather dashboard that fetches real-time weather data from the OpenWeatherMap API. Displays current conditions, a 5-day forecast, humidity, wind speed, and dynamic weather icons. Supports city search with location auto-complete.",
+    "technologies": ["JavaScript", "REST API", "HTML", "CSS", "OpenWeatherMap"],
+    "github": "https://github.com/Ljupce003/weather-dashboard",
+    "demo": "https://ljupce003.github.io/weather-dashboard"
+  }
+]
+

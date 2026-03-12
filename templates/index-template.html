@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description"
+          content="Ljupce — Computer Science student and developer. Explore my projects, skills, and background."/>
+    <title>Ljupce — Portfolio</title>
+    <link rel="icon" href="Images/logo-transparent.png" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {sans: ['Inter', 'ui-sans-serif', 'system-ui']},
+                    colors: {
+                        navy: {950: '#060d1f', 900: '#0a1128', 800: '#0f1a38', 700: '#162040'}
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': {opacity: '0', transform: 'translateY(24px)'},
+                            '100%': {opacity: '1', transform: 'translateY(0)'}
+                        },
+                        fadeIn: {'0%': {opacity: '0'}, '100%': {opacity: '1'}},
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        body { background-color: #060d1f; }
+        .nav-link { transition: color 0.2s; }
+        .nav-link:hover { color: #818cf8; }
+        .hero-glow { background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99, 102, 241, 0.18) 0%, transparent 70%); }
+        .btn-primary { transition: all 0.2s; }
+        .btn-primary:hover { background-color: #4f46e5; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45); }
+        .btn-outline { transition: all 0.2s; }
+        .btn-outline:hover { background-color: rgba(99, 102, 241, 0.08); border-color: #818cf8; color: #a5b4fc; transform: translateY(-2px); }
+        .skill-card { transition: all 0.25s; }
+        .skill-card:hover { border-color: rgba(99, 102, 241, 0.5); background-color: rgba(30, 41, 59, 0.8); transform: translateY(-2px); }
+        .animate-fade-up { opacity: 0; animation: fadeUp 0.6s ease-out forwards; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="font-sans text-slate-100 min-h-screen flex flex-col">
+
+{{nav}}
+
+<main class="flex-1">
+
+    <!-- ── Hero ── -->
+    <section class="hero-glow relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 pt-24 pb-28 text-center">
+
+            <!-- Availability badge -->
+            <div class="animate-fade-up inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold px-4 py-1.5 rounded-full mb-8">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Open to opportunities
+            </div>
+
+            <h1 class="animate-fade-up delay-100 text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-none tracking-tight mb-6">
+                Hi, I'm
+                <span class="bg-gradient-to-r from-indigo-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"> Ljupce</span>
+            </h1>
+
+            <p class="animate-fade-up delay-200 text-xl sm:text-2xl text-slate-400 font-light mb-4 max-w-xl mx-auto leading-relaxed">
+                Computer Science Student &amp; Developer
+            </p>
+
+            <p class="animate-fade-up delay-300 text-slate-500 max-w-lg mx-auto mb-12 leading-relaxed">
+                I build clean, efficient software — from web apps to algorithms. Currently studying at FINKI, Skopje.
+            </p>
+
+            <div class="animate-fade-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="projects/index.html"
+                   class="btn-primary bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    View My Projects
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                    </svg>
+                </a>
+                <a href="about.html"
+                   class="btn-outline border border-slate-600 text-slate-300 px-8 py-3.5 rounded-xl font-semibold text-sm">
+                    About Me
+                </a>
+            </div>
+
+            <!-- Social links -->
+            <div class="animate-fade-up delay-500 flex items-center justify-center gap-6 mt-12">
+                <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer"
+                   class="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+                    </svg>
+                    GitHub
+                </a>
+                <span class="text-slate-700">|</span>
+                <a href="about.html#contact"
+                   class="text-slate-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                    </svg>
+                    Contact
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Skills ── -->
+    <section class="max-w-5xl mx-auto px-6 py-20">
+        <p class="text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3 text-center">What I Work With</p>
+        <h2 class="text-3xl font-bold text-white text-center mb-12">Skills &amp; Technologies</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">☕</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">Java</p>
+                    <p class="text-slate-500 text-xs">OOP &amp; Desktop</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🐍</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">Python</p>
+                    <p class="text-slate-500 text-xs">Scripting &amp; Data</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🌐</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">JavaScript</p>
+                    <p class="text-slate-500 text-xs">Web &amp; Node.js</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🗄️</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">SQL</p>
+                    <p class="text-slate-500 text-xs">Databases</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🎨</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">HTML / CSS</p>
+                    <p class="text-slate-500 text-xs">Tailwind &amp; More</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🐙</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">Git</p>
+                    <p class="text-slate-500 text-xs">Version Control</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">⚡</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">Algorithms</p>
+                    <p class="text-slate-500 text-xs">DSA</p>
+                </div>
+            </div>
+
+            <div class="skill-card flex items-center gap-3 bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-4">
+                <span class="text-2xl">🖥️</span>
+                <div>
+                    <p class="text-white font-semibold text-sm">Linux</p>
+                    <p class="text-slate-500 text-xs">CLI &amp; Bash</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-20 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Interested in working together?</h2>
+            <p class="text-slate-400 mb-8 max-w-md mx-auto">
+                I'm always open to new opportunities, collaborations, or just a friendly chat.
+            </p>
+            <a href="about.html#contact"
+               class="btn-primary inline-flex items-center gap-2 bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-semibold text-sm">
+                Get In Touch
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+{{footer}}
+
+</body>
+</html>
+
