@@ -5,17 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="About Ljupce — CS student at FINKI Skopje. Education, courses, interests and contact." />
   <title>About — Ljupce's Portfolio</title>
-  <link rel="icon" href="Images/logo-transparent.png" type="image/png"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="icon" id="favicon-main" type="image/svg+xml" href="Assets/favicon/favicon.svg">
+
+  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
+  <link rel="apple-touch-icon" href="Assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="Assets/favicon/site.webmanifest">
+
+  <link href="Assets/css/output.css" rel="stylesheet">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-          colors: { navy: { 950: '#060d1f', 900: '#0a1128', 800: '#0f1a38' } }
-        }
-      }
+
+    function updateFavicons(isLight) {
+      const link = document.getElementById('favicon-main');
+      if (!link) return;
+
+      const suffix = isLight ? '-light' : '';
+      const newHref = `Assets/favicon/favicon${suffix}.svg`;
+
+      // 1. Log to verify (as you were doing)
+      console.log(`Switching favicon to: ${newHref}`);
+
+      // 2. The "Force Refresh" Trick:
+      // We clone the node, change the href, and replace the old one.
+      const newLink = link.cloneNode(true);
+      newLink.setAttribute('href', newHref);
+      link.parentNode.replaceChild(newLink, link);
     }
+
+    // 3. Listen for System Theme changes while the page is open
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      updateFavicons(e.matches);
+    });
+
+    // 4. Initial check
+    window.addEventListener('DOMContentLoaded', () => {
+      updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    });
+
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,7 +107,7 @@
           <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-                <img src="Images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain" onerror="this.parentElement.innerHTML='🎓'" />
+                <img src="Assets/images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain" onerror="this.parentElement.innerHTML='🎓'" />
               </div>
               <div>
                 <h3 class="text-white font-bold text-lg leading-tight">Faculty of Computer Science and Engineering</h3>
@@ -223,7 +249,7 @@
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="mailto:your.email@example.com"
              class="btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-sm">
-            <img src="Images/mail_icon.png" alt="" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
+            <img src="Assets/images/mail_icon.png" alt="" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
             Send an Email
           </a>
           <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer"
@@ -243,4 +269,3 @@
 
 </body>
 </html>
-

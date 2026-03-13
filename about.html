@@ -5,17 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="About Ljupce — CS student at FINKI Skopje. Education, courses, interests and contact." />
   <title>About — Ljupce's Portfolio</title>
-  <link rel="icon" href="Images/logo-transparent.png" type="image/png"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="icon" id="favicon-main" type="image/svg+xml" href="Assets/favicon/favicon.svg">
+
+  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
+  <link rel="apple-touch-icon" href="Assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="Assets/favicon/site.webmanifest">
+
+  <link href="Assets/css/output.css" rel="stylesheet">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-          colors: { navy: { 950: '#060d1f', 900: '#0a1128', 800: '#0f1a38' } }
-        }
-      }
+    // tailwind.config = {
+    //   theme: {
+    //     extend: {
+    //       fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+    //       colors: { navy: { 950: '#060d1f', 900: '#0a1128', 800: '#0f1a38' } }
+    //     }
+    //   }
+    // }
+
+    function updateFavicons(isLight) {
+      const link = document.getElementById('favicon-main');
+      if (!link) return;
+
+      const suffix = isLight ? '-light' : '';
+      const newHref = `Assets/favicon/favicon${suffix}.svg`;
+
+      // 1. Log to verify (as you were doing)
+      console.log(`Switching favicon to: ${newHref}`);
+
+      // 2. The "Force Refresh" Trick:
+      // We clone the node, change the href, and replace the old one.
+      const newLink = link.cloneNode(true);
+      newLink.setAttribute('href', newHref);
+      link.parentNode.replaceChild(newLink, link);
     }
+
+    // 3. Listen for System Theme changes while the page is open
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      updateFavicons(e.matches);
+    });
+
+    // 4. Initial check
+    window.addEventListener('DOMContentLoaded', () => {
+      updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    });
+
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,21 +68,69 @@
 </head>
 <body class="font-sans text-slate-100 min-h-screen flex flex-col">
 
-  <!-- Navbar -->
-  <nav class="border-b border-slate-800 bg-navy-950/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-5xl mx-auto px-6 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
-        <img src="Images/logo-transparent.png" alt="Logo" class="w-16 h-16 object-contain"/>
-      </a>
-      <div class="flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="index.html" class="nav-link ">Home</a>
-        <a href="about.html" class="nav-link text-indigo-400">About</a>
-        <a href="projects/index.html" class="nav-link ">Projects</a>
-      </div>
+<nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-navy-950/80 backdrop-blur-md sticky top-0 z-50 focus:outline-none">
+  <div class="max-w-5xl mx-auto px-4 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="Assets/images/logo-transparent.png" alt="Logo" class="w-16 h-16 object-contain dark:invert-0 invert transition-all"/>
+    </a>
+
+    <div class="flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+      <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors  focus:outline-none ">Home</a>
+      <a href="about.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-indigo-400 focus:outline-none ">About</a>
+      <a href="projects/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors  focus:outline-none ">Projects</a>
+
+      <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
     </div>
-  </nav>
+  </div>
+</nav>
 
+<script>
+  const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+  const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
+  // 1. Initialize Theme and Favicon
+  const isDark = localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+  function applyTheme(dark) {
+    if (dark) {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden'); // Show sun
+      themeToggleDarkIcon.classList.add('hidden');    // Hide moon
+      // updateFavicon('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden'); // Show moon
+      themeToggleLightIcon.classList.add('hidden');    // Hide sun
+      // updateFavicon('light');
+    }
+  }
+
+  // Run immediately on page load
+  applyTheme(isDark);
+
+  // 2. The Toggle Logic
+  const themeToggleBtn = document.getElementById('theme-toggle');
+
+  themeToggleBtn.addEventListener('click', function() {
+    const willBeDark = !document.documentElement.classList.contains('dark');
+    localStorage.setItem('color-theme', willBeDark ? 'dark' : 'light');
+    applyTheme(willBeDark);
+  });
+
+  // function updateFavicon(theme) {
+  //   const favicon = document.getElementById('favicon');
+  //   if (!favicon) return;
+  //   favicon.href = theme === 'dark' ? 'Assets/favicon/favicon-dark.svg' : 'Assets/favicon/favicon-light.svg';
+  // }
+</script>
 
   <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-16">
 
@@ -95,7 +177,7 @@
           <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-                <img src="Images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain" onerror="this.parentElement.innerHTML='🎓'" />
+                <img src="Assets/images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain" onerror="this.parentElement.innerHTML='🎓'" />
               </div>
               <div>
                 <h3 class="text-white font-bold text-lg leading-tight">Faculty of Computer Science and Engineering</h3>
@@ -237,7 +319,7 @@
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="mailto:your.email@example.com"
              class="btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-sm">
-            <img src="Images/mail_icon.png" alt="" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
+            <img src="Assets/images/mail_icon.png" alt="" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
             Send an Email
           </a>
           <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer"
@@ -253,20 +335,19 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 py-8 mt-auto">
-    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-      <p>&copy; 2026 Ljupce. All rights reserved.</p>
-      <div class="flex items-center gap-6">
-        <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors">GitHub</a>
-        <a href="about.html#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
-        <a href="projects/index.html" class="hover:text-indigo-400 transition-colors">Projects</a>
-      </div>
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-transparent py-8 mt-auto">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <p>&copy; 2026 Ljupce. All rights reserved.</p>
+    <div class="flex items-center gap-6 font-medium">
+      <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub</a>
+      <a href="about.html#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
+      <a href="projects/index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
     </div>
-  </footer>
-
-
+  </div>
+</footer>
 
 </body>
 </html>
+
+
 

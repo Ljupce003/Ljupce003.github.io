@@ -5,19 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="{{metaDescription}}" />
   <title>{{title}} — Ljupce's Portfolio</title>
-  <link rel="icon" href="../Images/logo-transparent.png" type="image/png"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="icon" id="favicon-main" type="image/svg+xml" href="../Assets/favicon/favicon.svg">
+
+  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
+  <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../Assets/favicon/site.webmanifest">
+
+  <link href="../Assets/css/output.css" rel="stylesheet">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-          colors: {
-            navy: { 950: '#060d1f', 900: '#0a1128', 800: '#0f1a38', 700: '#162040' }
-          }
-        }
-      }
+
+
+    function updateFavicons(isLight) {
+      const link = document.getElementById('favicon-main');
+      if (!link) return;
+
+      const suffix = isLight ? '-light' : '';
+      const newHref = `../Assets/favicon/favicon${suffix}.svg`;
+
+      // 1. Log to verify (as you were doing)
+      console.log(`Switching favicon to: ${newHref}`);
+
+      // 2. The "Force Refresh" Trick:
+      // We clone the node, change the href, and replace the old one.
+      const newLink = link.cloneNode(true);
+      newLink.setAttribute('href', newHref);
+      link.parentNode.replaceChild(newLink, link);
     }
+
+    // 3. Listen for System Theme changes while the page is open
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      updateFavicons(e.matches);
+    });
+
+    // 4. Initial check
+    window.addEventListener('DOMContentLoaded', () => {
+      updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    });
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
