@@ -7,69 +7,54 @@
   <title>Personal Portfolio Website — Ljupce's Portfolio</title>
 
   <link rel="icon" id="favicon-main" type="image/svg+xml" href="../Assets/favicon/favicon.svg">
-
-  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
-<!--  <script src="https://cdn.tailwindcss.com"></script>-->
+
   <script>
-    // tailwind.config = {
-    //   theme: {
-    //     extend: {
-    //       fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-    //       colors: {
-    //         navy: { 950: '#060d1f', 900: '#0a1128', 800: '#0f1a38', 700: '#162040' }
-    //       }
-    //     }
-    //   }
-    // }
+    // 1. Anti-Flash & System Theme Check
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
 
     function updateFavicons(isLight) {
       const link = document.getElementById('favicon-main');
       if (!link) return;
-
       const suffix = isLight ? '-light' : '';
       const newHref = `../Assets/favicon/favicon${suffix}.svg`;
 
-      // 1. Log to verify (as you were doing)
-      console.log(`Switching favicon to: ${newHref}`);
-
-      // 2. The "Force Refresh" Trick:
-      // We clone the node, change the href, and replace the old one.
       const newLink = link.cloneNode(true);
       newLink.setAttribute('href', newHref);
       link.parentNode.replaceChild(newLink, link);
     }
 
-    // 3. Listen for System Theme changes while the page is open
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       updateFavicons(e.matches);
     });
 
-    // 4. Initial check
     window.addEventListener('DOMContentLoaded', () => {
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
-    body { background-color: #060d1f; }
+    /* Clean up hardcoded colors to allow Tailwind toggle */
     .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-    .nav-link { transition: color 0.2s; }
-    .nav-link:hover { color: #818cf8; }
     .btn-primary { transition: all 0.2s; }
     .btn-primary:hover { background-color: #4f46e5; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
-    .btn-outline { transition: all 0.2s; }
-    .btn-outline:hover { background-color: rgba(99,102,241,0.1); border-color: #818cf8; transform: translateY(-1px); }
   </style>
 </head>
-<body class="font-sans text-slate-100 min-h-screen flex flex-col">
 
-<nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-navy-950/80 backdrop-blur-md sticky top-0 z-50 focus:outline-none">
+<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col transition-colors duration-300">
+
+<nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-navy-950/80 backdrop-blur-md sticky top-0 z-50 focus:outline-none transition-colors duration-300">
   <div class="max-w-5xl mx-auto px-4 h-20 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2">
       <img src="../Assets/images/logo-transparent.png" alt="Logo" class="w-16 h-16 object-contain dark:invert-0 invert transition-all"/>
@@ -105,16 +90,13 @@
       document.documentElement.classList.add('dark');
       themeToggleLightIcon.classList.remove('hidden'); // Show sun
       themeToggleDarkIcon.classList.add('hidden');    // Hide moon
-      // updateFavicon('dark');
     } else {
       document.documentElement.classList.remove('dark');
       themeToggleDarkIcon.classList.remove('hidden'); // Show moon
       themeToggleLightIcon.classList.add('hidden');    // Hide sun
-      // updateFavicon('light');
     }
   }
 
-  // Run immediately on page load
   applyTheme(isDark);
 
   // 2. The Toggle Logic
@@ -125,71 +107,59 @@
     localStorage.setItem('color-theme', willBeDark ? 'dark' : 'light');
     applyTheme(willBeDark);
   });
-
-  // function updateFavicon(theme) {
-  //   const favicon = document.getElementById('favicon');
-  //   if (!favicon) return;
-  //   favicon.href = theme === 'dark' ? 'Assets/favicon/favicon-dark.svg' : 'Assets/favicon/favicon-light.svg';
-  // }
 </script>
 
-  <!-- Main Content -->
-  <main class="flex-1 max-w-3xl mx-auto w-full px-6 py-16">
+<main class="flex-1 max-w-3xl mx-auto w-full px-6 py-16">
 
-    <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 text-sm text-slate-500 mb-10">
-      <a href="../index.html" class="hover:text-indigo-400 transition-colors">Home</a>
-      <span>/</span>
-      <a href="index.html" class="hover:text-indigo-400 transition-colors">Projects</a>
-      <span>/</span>
-      <span class="text-slate-300">Personal Portfolio Website</span>
+  <nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-500 mb-10">
+    <a href="../index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Home</a>
+    <span>/</span>
+    <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
+    <span>/</span>
+    <span class="text-slate-900 dark:text-slate-200 font-medium">Personal Portfolio Website</span>
+  </nav>
+
+  <header class="mb-12">
+    <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Personal Portfolio Website</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">A fully static personal portfolio website built with HTML, Tailwind CSS, and a Node.js build pipeline. Features a home page, about page, and auto-generated project pages from a JSON data file. Designed for GitHub Pages hosting with SEO-friendly pre-rendered HTML.</p>
+  </header>
+
+  <section class="mb-12">
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-4">Technologies Used</h2>
+    <div class="flex flex-wrap gap-2">
+      <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">HTML</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">Tailwind CSS</span>
+        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Node.js</span>
+        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">JavaScript</span>
     </div>
+  </section>
 
-    <!-- Project Header -->
-    <header class="mb-12">
-      <h1 class="text-4xl font-extrabold text-white mb-4 leading-tight">Personal Portfolio Website</h1>
-      <p class="text-lg text-slate-300 leading-relaxed">A fully static personal portfolio website built with HTML, Tailwind CSS, and a Node.js build pipeline. Features a home page, about page, and auto-generated project pages from a JSON data file. Designed for GitHub Pages hosting with SEO-friendly pre-rendered HTML.</p>
-    </header>
+  <div class="border-t border-slate-200 dark:border-slate-800 mb-12"></div>
 
-    <!-- Technologies -->
-    <section class="mb-12">
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">Technologies Used</h2>
-      <div class="flex flex-wrap gap-2">
-        <span class="badge bg-indigo-500/20 text-indigo-300 ring-1 ring-indigo-500/30">HTML</span>
-        <span class="badge bg-cyan-500/20 text-cyan-300 ring-1 ring-cyan-500/30">Tailwind CSS</span>
-        <span class="badge bg-violet-500/20 text-violet-300 ring-1 ring-violet-500/30">Node.js</span>
-        <span class="badge bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-500/30">JavaScript</span>
-      </div>
-    </section>
+  <section>
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6">Links</h2>
+    <div class="flex flex-wrap gap-4">
+      <a href="https://github.com/Ljupce003/Ljupce003.github.io" target="_blank" rel="noopener noreferrer"
+         class="btn-primary inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-sm">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+        </svg>
+        View on GitHub
+      </a>
+      <a href="https://ljupce003.github.io" data-demo-urls="[&quot;https://ljupce003.github.io&quot;]" target="_blank" rel="noopener noreferrer"
+             class="smart-demo-btn btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-sm">
+            <span class="relative flex h-2.5 w-2.5">
+               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75 status-ping"></span>
+               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 status-dot"></span>
+            </span>
+            Live Demo
+          </a>
+    </div>
+  </section>
 
-    <!-- Divider -->
-    <div class="border-t border-slate-800 mb-12"></div>
+</main>
 
-    <!-- Links -->
-    <section>
-      <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-6">Links</h2>
-      <div class="flex flex-wrap gap-4">
-        <a href="https://github.com/Ljupce003/Ljupce003.github.io" target="_blank" rel="noopener noreferrer"
-           class="btn-primary inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-sm">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-          </svg>
-          View on GitHub
-        </a>
-        
-        <a href="https://ljupce003.github.io" target="_blank" rel="noopener noreferrer"
-           class="btn-outline inline-flex items-center gap-2 border border-slate-600 text-slate-200 px-6 py-3 rounded-lg font-semibold text-sm">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-          </svg>
-          Live Demo
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-transparent py-8 mt-auto">
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-transparent py-8 mt-auto transition-colors duration-300">
   <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
     <p>&copy; 2026 Ljupce. All rights reserved.</p>
     <div class="flex items-center gap-6 font-medium">
@@ -200,6 +170,61 @@
   </div>
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const demoBtns = document.querySelectorAll('.smart-demo-btn');
+
+    async function checkDemoStatus(btn) {
+      const urlsAttr = btn.getAttribute('data-demo-urls');
+      if (!urlsAttr) return;
+
+      try {
+        const urls = JSON.parse(urlsAttr.replace(/&quot;/g, '"'));
+        let workingUrl = null;
+
+        for (const url of urls) {
+          try {
+            const response = await fetch(url, {cache: 'no-store'});
+            if (response.ok) {
+              workingUrl = url;
+              break;
+            }
+          } catch (e) {
+            try {
+              // no-cors fallback for 3rd party domains without Cloudflare rules
+              await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+              workingUrl = url;
+              break;
+            } catch (noCorsError) {
+              console.warn(`[SmartLink] ${url} is unreachable.`);
+            }
+          }
+        }
+
+        const dot = btn.querySelector('.status-dot');
+        const ping = btn.querySelector('.status-ping');
+
+        if (workingUrl) {
+          btn.href = workingUrl;
+          btn.style.pointerEvents = 'auto';
+          btn.classList.remove('opacity-50', 'grayscale');
+          if (ping) ping.classList.add('hidden'); // Hide so we can un-hide if it goes down later
+          if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 status-dot transition-colors duration-500';
+        } else {
+          btn.href = 'javascript:void(0)';
+          btn.style.pointerEvents = 'none';
+          btn.classList.add('opacity-50', 'grayscale');
+          if (ping) ping.classList.remove('hidden');
+          if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 status-dot transition-colors duration-500';
+        }
+      } catch (err) {
+        console.error("Status parse error", err);
+      }
+    }
+
+    demoBtns.forEach(checkDemoStatus);
+    setInterval(() => demoBtns.forEach(checkDemoStatus), 30000);
+  });
+</script>
 </body>
 </html>
-

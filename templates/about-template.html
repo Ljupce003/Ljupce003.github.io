@@ -7,13 +7,19 @@
   <title>About — Ljupce's Portfolio</title>
 
   <link rel="icon" id="favicon-main" type="image/svg+xml" href="Assets/favicon/favicon.svg">
-
-  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
   <link rel="apple-touch-icon" href="Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="Assets/favicon/site.webmanifest">
 
   <link href="Assets/css/output.css" rel="stylesheet">
+
   <script>
+
+    // 2. Anti-Flash & System Theme Check
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
 
     function updateFavicons(isLight) {
       const link = document.getElementById('favicon-main');
@@ -41,229 +47,132 @@
     window.addEventListener('DOMContentLoaded', () => {
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });
-
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
-    body { background-color: #060d1f; }
-    .nav-link { transition: color 0.2s; }
-    .nav-link:hover { color: #818cf8; }
-    .btn-primary { transition: all 0.2s; }
+    /* Global Sync for Smooth Transitions */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+
     .btn-primary:hover { background-color: #4f46e5; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
-    .course-tag { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 0.5rem; font-size: 0.8rem; font-weight: 500; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2); color: #a5b4fc; transition: all 0.2s; }
-    .course-tag:hover { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.4); }
-    .interest-card { transition: all 0.25s; }
-    .interest-card:hover { border-color: rgba(99,102,241,0.4); background: rgba(30,41,59,0.8); }
+
+    /* Theme-aware Tags */
+    .course-tag {
+      display: inline-block; padding: 0.3rem 0.8rem; border-radius: 0.5rem; font-size: 0.8rem; font-weight: 500;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+      color: #6366f1; /* Darker blue for light mode */
+      transition: all 0.2s;
+    }
+    .dark .course-tag { color: #a5b4fc; } /* Lighter blue for dark mode */
+
+    .interest-card:hover { border-color: rgba(99,102,241,0.4); }
+    .dark .interest-card:hover { background: rgba(30,41,59,0.8); }
   </style>
 </head>
-<body class="font-sans text-slate-100 min-h-screen flex flex-col">
+
+<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-300 min-h-screen flex flex-col">
 
 {{nav}}
 
-  <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-16">
+<main class="flex-1 max-w-5xl mx-auto w-full px-6 py-16">
 
-    <!-- ── Page Header ── -->
-    <header class="mb-16">
-      <p class="text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">Get to know me</p>
-      <h1 class="text-4xl font-extrabold text-white mb-6">About Me</h1>
-      <div class="flex flex-col md:flex-row gap-10 items-start">
-        <div class="shrink-0">
-          <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center text-5xl font-black text-white shadow-xl">
-            L
-          </div>
-        </div>
-        <div>
-          <p class="text-slate-300 leading-relaxed text-lg mb-4">
-            Hi! I'm <strong class="text-white">Ljupce</strong>, a Computer Science student at the Faculty of Computer Science
-            and Engineering (<strong class="text-white">FINKI</strong>) in Skopje, North Macedonia.
-          </p>
-          <p class="text-slate-400 leading-relaxed mb-4">
-            I'm passionate about writing clean, maintainable code and building things that are actually useful.
-            I enjoy working across the stack — from crafting user interfaces to designing algorithms and working with databases.
-          </p>
-          <p class="text-slate-400 leading-relaxed">
-            When I'm not coding, you'll find me reading about new technologies, tinkering with side projects,
-            or enjoying a good video game.
-          </p>
+  <header class="mb-16">
+    <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">Get to know me</p>
+    <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">About Me</h1>
+    <div class="flex flex-col md:flex-row gap-10 items-start">
+      <div class="shrink-0">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center text-5xl font-black text-white shadow-xl">
+          L
         </div>
       </div>
-    </header>
-
-    <!-- ── Education ── -->
-    <section class="mb-16">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-white">Education</h2>
-      </div>
-
-      <div class="space-y-4">
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/30 transition-colors">
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-                <img src="Assets/images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain" onerror="this.parentElement.innerHTML='🎓'" />
-              </div>
-              <div>
-                <h3 class="text-white font-bold text-lg leading-tight">Faculty of Computer Science and Engineering</h3>
-                <p class="text-indigo-400 font-medium text-sm">Ss. Cyril and Methodius University — Skopje, North Macedonia</p>
-              </div>
-            </div>
-            <span class="shrink-0 text-slate-500 text-sm font-medium bg-slate-700/50 px-3 py-1 rounded-full">2022 — Present</span>
-          </div>
-          <p class="text-slate-400 text-sm leading-relaxed">
-            Bachelor's degree in Computer Science and Engineering (FINKI). Focused on software engineering,
-            algorithms, data structures, databases, and computer networks.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Courses ── -->
-    <section class="mb-16">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center text-violet-400">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-white">Courses &amp; Subjects</h2>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
-          <h3 class="text-white font-semibold mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-            Core Computer Science
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="course-tag">Data Structures</span>
-            <span class="course-tag">Algorithms</span>
-            <span class="course-tag">Object-Oriented Programming</span>
-            <span class="course-tag">Discrete Mathematics</span>
-            <span class="course-tag">Operating Systems</span>
-            <span class="course-tag">Computer Networks</span>
-            <span class="course-tag">Compilers</span>
-          </div>
-        </div>
-
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
-          <h3 class="text-white font-semibold mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            Software Engineering
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="course-tag">Software Design</span>
-            <span class="course-tag">Design Patterns</span>
-            <span class="course-tag">Databases</span>
-            <span class="course-tag">Web Programming</span>
-            <span class="course-tag">Software Testing</span>
-            <span class="course-tag">Version Control</span>
-          </div>
-        </div>
-
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
-          <h3 class="text-white font-semibold mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-violet-400"></span>
-            Mathematics &amp; Theory
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="course-tag">Linear Algebra</span>
-            <span class="course-tag">Calculus</span>
-            <span class="course-tag">Probability &amp; Statistics</span>
-            <span class="course-tag">Logic</span>
-            <span class="course-tag">Formal Languages</span>
-          </div>
-        </div>
-
-        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6">
-          <h3 class="text-white font-semibold mb-4 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            Systems &amp; Architecture
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            <span class="course-tag">Computer Architecture</span>
-            <span class="course-tag">Embedded Systems</span>
-            <span class="course-tag">Parallel Programming</span>
-            <span class="course-tag">Security Basics</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Interests ── -->
-    <section class="mb-16">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-white">Interests</h2>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="interest-card bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 text-center">
-          <span class="text-4xl mb-3 block">💻</span>
-          <p class="text-white font-semibold text-sm">Open Source</p>
-          <p class="text-slate-500 text-xs mt-1">Contributing &amp; exploring projects</p>
-        </div>
-        <div class="interest-card bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 text-center">
-          <span class="text-4xl mb-3 block">🎮</span>
-          <p class="text-white font-semibold text-sm">Gaming</p>
-          <p class="text-slate-500 text-xs mt-1">Strategy &amp; indie games</p>
-        </div>
-        <div class="interest-card bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 text-center">
-          <span class="text-4xl mb-3 block">📚</span>
-          <p class="text-white font-semibold text-sm">Reading</p>
-          <p class="text-slate-500 text-xs mt-1">Tech books &amp; blogs</p>
-        </div>
-        <div class="interest-card bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 text-center">
-          <span class="text-4xl mb-3 block">🧩</span>
-          <p class="text-white font-semibold text-sm">Problem Solving</p>
-          <p class="text-slate-500 text-xs mt-1">Competitive programming</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Contact ── -->
-    <section id="contact" class="scroll-mt-24">
-      <div class="flex items-center gap-3 mb-8">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-          </svg>
-        </div>
-        <h2 class="text-2xl font-bold text-white">Contact</h2>
-      </div>
-
-      <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-8">
-        <p class="text-slate-400 mb-8 leading-relaxed">
-          Want to connect, collaborate, or just say hi? Feel free to reach out — I always reply.
+      <div>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-lg mb-4">
+          Hi! I'm <strong class="text-slate-900 dark:text-white">Ljupce</strong>, a Computer Science student at the Faculty of Computer Science
+          and Engineering (<strong class="text-slate-900 dark:text-white">FINKI</strong>) in Skopje, North Macedonia.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="mailto:your.email@example.com"
-             class="btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-sm">
-            <img src="Assets/images/mail_icon.png" alt="" class="w-5 h-5 object-contain" onerror="this.style.display='none'" />
-            Send an Email
-          </a>
-          <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center justify-center gap-2 border border-slate-600 text-slate-300 px-6 py-3 rounded-xl font-semibold text-sm hover:border-slate-400 hover:text-white transition-all">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-            </svg>
-            GitHub Profile
-          </a>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          I'm passionate about writing clean, maintainable code and building things that are actually useful.
+          I enjoy working across the stack — from crafting user interfaces to designing algorithms and working with databases.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="mb-16">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-8 h-8 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+        </svg>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Education</h2>
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/30">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
+              <img src="Assets/images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain dark:invert-0 invert transition-all" />
+            </div>
+            <div>
+              <h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight">Faculty of Computer Science and Engineering</h3>
+              <p class="text-indigo-600 dark:text-indigo-400 font-medium text-sm">FINKI — Skopje</p>
+            </div>
+          </div>
+          <span class="shrink-0 text-slate-500 text-sm font-medium bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full">2022 — Present</span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          Focused on software engineering, algorithms, databases, and computer networks.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-16">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-8 h-8 rounded-lg bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Courses &amp; Subjects</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+          Software Engineering
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="course-tag">Software Design</span>
+          <span class="course-tag">Databases</span>
+          <span class="course-tag">Web Programming</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <section id="contact" class="scroll-mt-24">
+    <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-8">
+      <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+        Want to connect? Feel free to reach out.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="mailto:your@email.com" class="btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-sm">
+          Send an Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 {{footer}}
 

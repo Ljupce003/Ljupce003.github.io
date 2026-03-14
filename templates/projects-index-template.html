@@ -7,14 +7,19 @@
   <title>Projects — Ljupce's Portfolio</title>
 
   <link rel="icon" id="favicon-main" type="image/svg+xml" href="../Assets/favicon/favicon.svg">
-
-  <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
+
   <script>
 
+    // 2. Anti-Flash & System Theme Check
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
 
     function updateFavicons(isLight) {
       const link = document.getElementById('favicon-main');
@@ -43,40 +48,120 @@
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
-    body { background-color: #060d1f; }
-    .badge { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-    .nav-link { transition: color 0.2s; }
-    .nav-link:hover { color: #818cf8; }
+    /* Smooth Transition Sync */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+
+    .badge {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+      color: #4f46e5;
+    }
+    .dark .badge { color: #818cf8; border-color: rgba(129,140,248,0.2); }
+
     article { position: relative; }
     .stretched-link::after { position: absolute; inset: 0; content: ''; z-index: 1; }
   </style>
 </head>
-<body class="font-sans text-slate-100 min-h-screen flex flex-col">
+
+<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col">
 
 {{nav}}
 
-  <!-- Page Header -->
-  <header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
-    <p class="text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
-    <h1 class="text-4xl font-extrabold text-white mb-4">Projects</h1>
-    <p class="text-slate-400 text-lg max-w-xl">
-      A collection of things I've built — from academic coursework to personal experiments.
-    </p>
-  </header>
+<header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
+  <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
+  <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
+  <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
+    A collection of things I've built — from academic coursework to personal experiments.
+  </p>
+</header>
 
-  <!-- Projects Grid -->
-  <main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-      {{projectCards}}
-    </div>
-  </main>
+<main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+    {{projectCards}}
+  </div>
+</main>
 
 {{footer}}
 
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const demoBtns = document.querySelectorAll('.smart-demo-btn');
+
+    async function checkDemoStatus(btn) {
+      const urlsAttr = btn.getAttribute('data-demo-urls');
+      if (!urlsAttr) return;
+
+      try {
+        const urls = JSON.parse(urlsAttr.replace(/&quot;/g, '"'));
+        let workingUrl = null;
+
+        for (const url of urls) {
+          try {
+            // STEP 1: Try a normal fetch
+            const response = await fetch(url, {cache: 'no-store'});
+            if (response.ok) {
+              console.log(url,"works")
+              workingUrl = url;
+              break;
+            }
+          } catch (e) {
+            // STEP 2: If Step 1 failed (likely CORS), try 'no-cors'
+            // This is a "blind" check. If this succeeds, the server is ALIVE
+            // even if we can't see the 200/404 status.
+            try {
+              await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+
+              console.log(url, "no-cors check succeeded (server is alive)");
+              workingUrl = url;
+              break;
+
+            } catch (noCorsError) {
+              console.warn(`[SmartLink] ${url} is truly unreachable.`);
+            }
+          }
+        }
+
+        const dot = btn.querySelector('.status-dot');
+        const ping = btn.querySelector('.status-ping');
+
+        if (workingUrl) {
+          btn.href = workingUrl;
+          btn.style.pointerEvents = 'auto';
+          btn.classList.remove('opacity-50', 'grayscale');
+          if (ping) ping.remove();
+          if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 status-dot transition-colors duration-500';
+        } else {
+          btn.href = 'javascript:void(0)';
+          btn.style.pointerEvents = 'none';
+          btn.classList.add('opacity-50', 'grayscale');
+          if (ping) ping.remove();
+          if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 status-dot transition-colors duration-500';
+        }
+      } catch (err) {
+        console.error("Parse error", err);
+      }
+    }
+
+    // 1. Run immediately on page load
+    demoBtns.forEach(checkDemoStatus);
+
+    // 2. Run again every 30 seconds (30000 milliseconds)
+    setInterval(() => {
+      demoBtns.forEach(checkDemoStatus);
+    }, 30000);
+  });
+</script>
 </body>
 </html>
-

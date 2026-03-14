@@ -16,12 +16,12 @@
     "demo": ""
   },
   {
-    "slug": "algorithm-visualizer",
-    "title": "Algorithm Visualizer",
+    "slug": "news-articles-aggregator",
+    "title": "News Articles aggregator",
     "description": "An interactive web app that visually demonstrates how common sorting and pathfinding algorithms work step-by-step. Supports Bubble Sort, Merge Sort, Quick Sort, and Dijkstra's algorithm. Useful as an educational tool for understanding algorithmic complexity.",
     "technologies": ["JavaScript", "HTML", "CSS", "Canvas API"],
     "github": "https://github.com/Ljupce003/algorithm-visualizer",
-    "demo": "https://ljupce003.github.io/algorithm-visualizer"
+    "demo": ["https://isproject.ljupchoangelovski.com","https://isprojectweb20250823163857-b3btc6aeawbehfb2.switzerlandnorth-01.azurewebsites.net"]
   },
   {
     "slug": "weather-dashboard",
