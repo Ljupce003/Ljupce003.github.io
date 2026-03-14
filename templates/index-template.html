@@ -13,6 +13,8 @@
     <link rel="apple-touch-icon" href="Assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="Assets/favicon/site.webmanifest">
 
+    <link rel="preload" as="image" href="Assets/images/logo-hover.png">
+
     <link href="Assets/css/output.css" rel="stylesheet">
     <script>
 
@@ -103,21 +105,21 @@
 
             <div class="flex flex-col md:flex-row gap-12 items-start justify-between">
                 <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-semibold px-3 py-1 rounded-sm mb-6">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Status: Available for work
-                    </div>
+<!--                    <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-semibold px-3 py-1 rounded-sm mb-6">-->
+<!--                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>-->
+<!--                        Status: Available for work-->
+<!--                    </div>-->
 
                     <h1 class="text-5xl sm:text-7xl font-black tracking-tight mb-6 text-slate-900 dark:text-white">
-                        Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Ljupce.</span>
+                        Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Ljupcho.</span>
                     </h1>
 
                     <p class="text-xl sm:text-2xl font-light mb-6 text-slate-600 dark:text-slate-400">
-                        Computer Science Student & Developer building clean, scalable systems.
+                        Computer Science Student & Developer that tries to build clean and organized backend systems.
                     </p>
 
                     <p class="text-slate-500 dark:text-slate-500 mb-10 text-lg leading-relaxed max-w-lg">
-                        Currently studying at FINKI, Skopje. I specialize in bridging the gap between complex algorithms and practical web applications.
+                        I’m a backend-focused developer with a deep interest in Linux administration and infrastructure. Whether I’m architecting APIs, working with template-driven SSR, or configuring CI/CD pipelines, I try to keep a security-first mindset and a genuine love for the logistics of how complex systems actually fit together.
                     </p>
 
                     <div class="flex flex-wrap items-center gap-4">
@@ -139,33 +141,58 @@
 
     <section class="max-w-5xl mx-auto px-6 py-24">
         <div class="mb-12">
-            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tech Stack</h2>
-            <p class="text-slate-500 mt-2">Tools I use to bring ideas to life.</p>
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tech Stack & Capabilities</h2>
+            <p class="text-slate-500 mt-2">The ecosystems, architectures, and tools I use to build robust platforms.</p>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Backend</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">Java</p>
-                <p class="text-slate-500 text-sm">OOP & Desktop</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Enterprise Backend</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Java & C#</p>
+                <p class="text-slate-500 text-sm">Spring Boot, .NET Core, SOLID Principles</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Scripting</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Data & AI</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">Python</p>
-                <p class="text-slate-500 text-sm">Data & Automation</p>
+                <p class="text-slate-500 text-sm">Django, NLP, LSTM Models</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Frontend</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">JavaScript</p>
-                <p class="text-slate-500 text-sm">DOM & Node.js</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// DevOps & Infra</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Cloud & Docker</p>
+                <p class="text-slate-500 text-sm">AWS, Azure, Vagrant, Linux Admin</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Database</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">SQL</p>
-                <p class="text-slate-500 text-sm">Relational Design</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Network Sec</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Net & Security</p>
+                <p class="text-slate-500 text-sm">pfSense, Kali, Sockets</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Architecture</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">System Design</p>
+                <p class="text-slate-500 text-sm">DDD, Microservices, REST</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Core Systems</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Concurrency</p>
+                <p class="text-slate-500 text-sm">Multithreading, Mutexes</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Persistence</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Databases</p>
+                <p class="text-slate-500 text-sm">SQL Server, Postgres, JPA</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Interface & Rendering</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">SSR & UI</p>
+                <p class="text-slate-500 text-sm">Laravel Blade, Thymeleaf, Razor, Tailwind, Bootstrap, Vue/React</p>
             </div>
 
         </div>

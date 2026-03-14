@@ -10,6 +10,8 @@
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
+  <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
+
   <link href="../Assets/css/output.css" rel="stylesheet">
 
   <script>
@@ -55,11 +57,11 @@
 
   <style>
     /* Smooth Transition Sync */
-    * {
-      transition-property: background-color, border-color, color, fill, stroke;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 300ms;
-    }
+    /** {*/
+    /*  transition-property: background-color, border-color, color, fill, stroke;*/
+    /*  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
+    /*  transition-duration: 300ms;*/
+    /*}*/
 
     .badge {
       display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
@@ -74,12 +76,27 @@
   </style>
 </head>
 
-<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col">
+<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col transition-colors duration-300">
 
 <nav class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-navy-950/80 backdrop-blur-md sticky top-0 z-50 focus:outline-none transition-colors duration-300">
   <div class="max-w-5xl mx-auto px-4 h-20 flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2">
-      <img src="../Assets/images/logo-transparent.png" alt="Logo" class="w-16 h-16 object-contain dark:invert-0 invert transition-all"/>
+
+    <a href="../index.html" class="relative block w-16 h-16 group">
+      <img
+              src="../Assets/images/logo-transparent.png"
+              alt="Logo"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300
+           invert dark:invert-0
+           group-hover:opacity-0"
+      />
+
+      <img
+              src="../Assets/images/logo-hover.png"
+              alt="Logo Hover"
+              class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300
+           opacity-0
+           group-hover:opacity-100"
+      />
     </a>
 
     <div class="flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
@@ -308,13 +325,16 @@
 
 <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-transparent py-8 mt-auto transition-colors duration-300">
   <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
-    <p>&copy; 2026 Ljupce. All rights reserved.</p>
+    <p id="footer-text"></p>
     <div class="flex items-center gap-6 font-medium">
       <a href="https://github.com/Ljupce003" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">GitHub</a>
       <a href="../about.html#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a>
       <a href="index.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Projects</a>
     </div>
   </div>
+  <script>
+    document.getElementById("footer-text").innerText= `@ ${new Date().getFullYear()} Ljupce. All rights reserved.`
+  </script>
 </footer>
 
 

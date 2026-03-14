@@ -10,6 +10,8 @@
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
+  <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
+
   <link href="../Assets/css/output.css" rel="stylesheet">
 
   <script>
@@ -55,11 +57,11 @@
 
   <style>
     /* Smooth Transition Sync */
-    * {
-      transition-property: background-color, border-color, color, fill, stroke;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 300ms;
-    }
+    /** {*/
+    /*  transition-property: background-color, border-color, color, fill, stroke;*/
+    /*  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
+    /*  transition-duration: 300ms;*/
+    /*}*/
 
     .badge {
       display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
@@ -74,7 +76,7 @@
   </style>
 </head>
 
-<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col">
+<body class="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-400 min-h-screen flex flex-col transition-colors duration-300">
 
 {{nav}}
 
