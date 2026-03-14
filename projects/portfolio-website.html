@@ -191,10 +191,12 @@
             }
           } catch (e) {
             try {
-              // no-cors fallback for 3rd party domains without Cloudflare rules
-              await fetch(url, { mode: 'no-cors', cache: 'no-store' });
-              workingUrl = url;
-              break;
+              const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+              if(no_cors_response.ok){
+                workingUrl = url;
+                break;
+              }
+
             } catch (noCorsError) {
               console.warn(`[SmartLink] ${url} is unreachable.`);
             }

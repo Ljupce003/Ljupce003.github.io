@@ -121,11 +121,11 @@
             // This is a "blind" check. If this succeeds, the server is ALIVE
             // even if we can't see the 200/404 status.
             try {
-              await fetch(url, { mode: 'no-cors', cache: 'no-store' });
-
-              console.log(url, "no-cors check succeeded (server is alive)");
-              workingUrl = url;
-              break;
+              const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+              if(no_cors_response.ok){
+                workingUrl = url;
+                break;
+              }
 
             } catch (noCorsError) {
               console.warn(`[SmartLink] ${url} is truly unreachable.`);
