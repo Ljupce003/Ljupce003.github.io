@@ -11,6 +11,9 @@
   <link rel="manifest" href="Assets/favicon/site.webmanifest">
 
   <link rel="preload" as="image" href="Assets/images/logo-hover.png">
+  <link rel="preload" as="image" href="Assets/images/portrait.JPG">
+  <link rel="preload" as="image" href="Assets/images/finki-logo-short.png">
+  <link rel="preload" as="image" href="Assets/images/ksb-logo.jpg">
 
   <link href="Assets/css/output.css" rel="stylesheet">
 
@@ -30,22 +33,17 @@
       const suffix = isLight ? '-light' : '';
       const newHref = `Assets/favicon/favicon${suffix}.svg`;
 
-      // 1. Log to verify (as you were doing)
-      console.log(`Switching favicon to: ${newHref}`);
-
-      // 2. The "Force Refresh" Trick:
-      // We clone the node, change the href, and replace the old one.
       const newLink = link.cloneNode(true);
       newLink.setAttribute('href', newHref);
       link.parentNode.replaceChild(newLink, link);
     }
 
-    // 3. Listen for System Theme changes while the page is open
+    // Listen for System Theme changes while the page is open
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       updateFavicons(e.matches);
     });
 
-    // 4. Initial check
+    // Initial check
     window.addEventListener('DOMContentLoaded', () => {
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });
@@ -158,19 +156,55 @@
     <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">About Me</h1>
     <div class="flex flex-col md:flex-row gap-10 items-start">
       <div class="shrink-0">
-        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center text-5xl font-black text-white shadow-xl">
-          L
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center shadow-xl overflow-hidden">
+          <img src="Assets/images/portrait.JPG" alt="L" class="w-full h-full object-cover">
         </div>
       </div>
       <div>
         <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-lg mb-4">
-          Hi! I'm <strong class="text-slate-900 dark:text-white">Ljupce</strong>, a Computer Science student at the Faculty of Computer Science
+          Hi! I'm <strong class="text-slate-900 dark:text-white">Ljupcho Angelovski</strong>, a Computer Science student at the Faculty of Computer Science
           and Engineering (<strong class="text-slate-900 dark:text-white">FINKI</strong>) in Skopje, North Macedonia.
         </p>
-        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-          I'm passionate about writing clean, maintainable code and building things that are actually useful.
-          I enjoy working across the stack — from crafting user interfaces to designing algorithms and working with databases.
-        </p>
+        <div class="space-y-8">
+
+          <section>
+            <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              The Philosophy
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              I'm passionate about writing clean, maintainable code and building things that are actually
+              useful. I enjoy working across the stack, but my core motivation is curiosity. I don't just
+              want to use tools. I want to understand the invisible architecture underneath them. Whether
+              I'm designing algorithms, working with databases, or configuring infrastructure, I need to
+              know exactly how things work under the hood.
+            </p>
+          </section>
+
+          <section>
+            <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              The Process
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              I am a perfectionist with a sharp attention to detail. I actively seek out challenging tasks
+              because the hard stuff is what makes us better developers. When I'm invested in a problem, I
+              will often forget to take breaks until it's solved. I rarely give up on an issue—if
+              something is proving incredibly difficult, I simply step away to make a macchiato or a
+              Nescafé 3in1, and then I get right back to it.
+            </p>
+          </section>
+
+          <section>
+            <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              The People
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              The team is just as important as the tech. I thrive when working alongside bright, driven
+              teammates. I try to bring a gentle, grounded approach to my work, and I am a strict believer
+              in fairness and collaboration.
+            </p>
+          </section>
+
+        </div>
       </div>
     </div>
   </header>
@@ -190,17 +224,45 @@
         <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-              <img src="Assets/images/finki.png" alt="FINKI logo" class="w-10 h-10 object-contain dark:invert-0 invert transition-all" />
+              <img src="Assets/images/finki-logo-short.png" alt="FINKI logo" class="w-full h-full object-cover transition-all" />
             </div>
             <div>
-              <h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight">Faculty of Computer Science and Engineering</h3>
-              <p class="text-indigo-600 dark:text-indigo-400 font-medium text-sm">FINKI — Skopje</p>
+              <a href="https://www.finki.ukim.mk/" class="text-slate-900 dark:text-white underline hover:text-indigo-600 dark:hover:text-indigo-400">
+                <h3 class=" font-bold text-lg leading-tight">
+                  Faculty of Computer Science and Engineering
+                </h3>
+              </a>
+
+              <p class="text-indigo-500 dark:text-indigo-500 font-medium text-sm">FINKI — Skopje</p>
             </div>
           </div>
           <span class="shrink-0 text-slate-500 text-sm font-medium bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full">2022 — Present</span>
         </div>
         <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-          Focused on software engineering, algorithms, databases, and computer networks.
+          Software engineering and information systems
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/30">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
+              <img src="Assets/images/ksb-logo.jpg" alt="KSB logo" class="w-full h-full object-cover transition-all" />
+            </div>
+            <div>
+              <a href="https://souksb.mk/" class="text-slate-900 dark:text-white underline hover:text-indigo-600 dark:hover:text-indigo-400">
+                <h3 class=" font-bold text-lg leading-tight">
+                  Technical High School "Kiro Spandžov - Brko"
+                </h3>
+              </a>
+              <!--              <h3 class="text-slate-900 dark:text-white font-bold text-lg leading-tight">Technical High School "Kiro Spandžov - Brko"</h3>-->
+              <p class="text-indigo-500 dark:text-indigo-500 font-medium text-sm">KSB — Kavadarci</p>
+            </div>
+          </div>
+          <span class="shrink-0 text-slate-500 text-sm font-medium bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full">2018 — 2022</span>
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          Electrician for computer technology and automation
         </p>
       </div>
     </div>
@@ -209,34 +271,347 @@
   <section class="mb-16">
     <div class="flex items-center gap-3 mb-8">
       <div class="w-8 h-8 rounded-lg bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+        </svg>
       </div>
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Courses &amp; Subjects</h2>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Certifications & Learning</h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6">
-        <h3 class="text-slate-900 dark:text-white font-semibold mb-4 flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
-          Software Engineering
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <span class="course-tag">Software Design</span>
-          <span class="course-tag">Databases</span>
-          <span class="course-tag">Web Programming</span>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-all duration-300 group">
+        <div class="flex justify-between items-start gap-4 mb-1">
+          <h3 class="text-slate-900 dark:text-white font-semibold flex items-start gap-3">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+            <span>Full-Stack Web Development Bootcamp - Udemy</span>
+          </h3>
+          <span class="shrink-0 px-2 py-1 text-[10px] font-bold uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          Completed
+        </span>
+        </div>
+
+        <a href="https://www.udemy.com/certificate/..." target="_blank" rel="noopener noreferrer" class="text-sm text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium inline-flex items-center gap-1.5 mt-1.5 mb-6 ml-5 transition-colors w-fit">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+
+        <div class="flex flex-wrap gap-2 mt-auto ml-5">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">HTML</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">CSS</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Javascript</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Node.js</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Express.js</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Git, VCS</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Github</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">PostgreSQL</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">React</span>
         </div>
       </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-all duration-300 group">
+        <div class="flex justify-between items-start gap-4 mb-1">
+          <h3 class="text-slate-900 dark:text-white font-semibold flex items-start gap-3">
+            <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+            <span>Decoding DevOps: Basics to Advanced - Udemy</span>
+          </h3>
+          <span class="shrink-0 px-2 py-1 text-[10px] font-bold uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+          Completed
+        </span>
+        </div>
+
+        <a href="https://www.udemy.com/certificate/..." target="_blank" rel="noopener noreferrer" class="text-sm text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium inline-flex items-center gap-1.5 mt-1.5 mb-6 ml-5 transition-colors w-fit">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+        </a>
+
+        <div class="flex flex-wrap gap-2 mt-auto ml-5">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">VMs</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Linux</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Vagrant</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Node.js</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Bash</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Networking</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">AWS</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">CI/CD w Jenkins</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Terraform</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Ansible</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">GCP</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Docker</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Kubernetes</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section id="contact" class="scroll-mt-24">
-    <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-8">
-      <p class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-        Want to connect? Feel free to reach out.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="mailto:your@email.com" class="btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold text-sm">
-          Send an Email
+  <section class="mb-16">
+    <div class="flex items-center gap-3 mb-8">
+      <div class="w-8 h-8 rounded-lg bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">University Subjects & Technologies</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Algorithms & Data Structures</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Java</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Lists, Stacks, Queues</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Hash Tables & Trees</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Graphs</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Object Oriented Programming</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">C++</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">OOP Concepts</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Advanced Programming</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Java Streams</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Collections Framework</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Generics & Lambdas</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Computer Networks</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">OSI Model</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Network Protocols</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Wireshark</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Operating Systems</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Bash Scripting</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Docker</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">TCP/UDP Sockets</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Databases</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">SQL (DDL/DML/DQL)</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">ER/EER Modeling</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Normalization</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Transactions & CTEs</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Software Design & Architecture</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Microservices</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Design Patterns</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Event-Driven Arch</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Web Programming</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Spring Boot</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Spring Data/JPA</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Spring Security</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Dependency Injection</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>E-Commerce</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">React & Hooks</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Spring REST API</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">JWT</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Cron Jobs</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Integrated Systems</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">.NET Core</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Stripe API</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Azure Hosting</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Human Computer Interaction</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Django</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Figma</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Bootstrap</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">UX Principles</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Intro to Data Science</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Pandas & Numpy</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Selenium Scrapping</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Deep Learning</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">NLP & Transformers</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Video Game Programming</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Pygame</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Game Loops</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Animations</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Open Source Systems</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">PHP</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Laravel</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Filament</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Mobile Information Systems</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Flutter</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Mobile Development</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Advanced Web Design</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Vue.js</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">OOP JavaScript</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Closures</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>DevOps</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Docker</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Kubernetes</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Jenkins</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">GitHub</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Service Oriented Architectures</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Spring Microservices</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">DDD</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Axon Framework</span>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+        <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0"></span>
+          <span>Ethical Hacking</span>
+        </h3>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Network Attacks</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Firewalls & VMs</span>
+          <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">Protocols</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="max-w-5xl mx-auto scroll-mt-10">
+    <div class="mb-6">
+      <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Connect</h2>
+      <p class="text-slate-500 mt-2">I'm always open to technical discussions or professional opportunities.</p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-2xl p-8 transition-all duration-300 hover:border-indigo-500/50">
+      <div class="flex flex-wrap gap-4">
+        <a href="mailto:ljupceangelovski003@gmail.com"
+           class="inline-flex items-center px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-all transform hover:-translate-y-1 active:scale-95 shadow-lg shadow-indigo-500/20">
+          Email
+        </a>
+
+        <a href="https://www.linkedin.com/in/ljupcho-angelovski"
+           class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-600">
+          LinkedIn
+        </a>
+
+        <a href="https://github.com/Ljupce003"
+           class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-600">
+          GitHub
         </a>
       </div>
     </div>

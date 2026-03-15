@@ -14,6 +14,9 @@
     <link rel="manifest" href="Assets/favicon/site.webmanifest">
 
     <link rel="preload" as="image" href="Assets/images/logo-hover.png">
+    <link rel="preload" as="image" href="Assets/images/portrait.JPG">
+    <link rel="preload" as="image" href="Assets/images/finki-logo-short.png">
+    <link rel="preload" as="image" href="Assets/images/ksb-logo.jpg">
 
     <link href="Assets/css/output.css" rel="stylesheet">
     <script>
@@ -32,22 +35,17 @@
             const suffix = isLight ? '-light' : '';
             const newHref = `Assets/favicon/favicon${suffix}.svg`;
 
-            // 1. Log to verify (as you were doing)
-            console.log(`Switching favicon to: ${newHref}`);
-
-            // 2. The "Force Refresh" Trick:
-            // We clone the node, change the href, and replace the old one.
             const newLink = link.cloneNode(true);
             newLink.setAttribute('href', newHref);
             link.parentNode.replaceChild(newLink, link);
         }
 
-        // 3. Listen for System Theme changes while the page is open
+        // Listen for System Theme changes while the page is open
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             updateFavicons(e.matches);
         });
 
-        // 4. Initial check
+        // Initial check
         window.addEventListener('DOMContentLoaded', () => {
             updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
         });
@@ -216,51 +214,51 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Enterprise Backend</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Enterprise</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">Java & C#</p>
-                <p class="text-slate-500 text-sm">Spring Boot, .NET Core, SOLID Principles</p>
+                <p class="text-slate-500 text-sm">Spring Boot, .NET Core, SOLID, DI</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Rapid Development</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">PHP & Laravel</p>
+                <p class="text-slate-500 text-sm">Eloquent ORM, Middleware, Service Container</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
                 <p class="text-slate-400 font-mono text-xs mb-2">// Data & AI</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">Python</p>
-                <p class="text-slate-500 text-sm">Django, NLP, LSTM Models</p>
+                <p class="text-slate-500 text-sm">Django, NLP, LSTM, BeautifulSoup</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// DevOps & Infra</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// DevOps</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">Cloud & Docker</p>
-                <p class="text-slate-500 text-sm">AWS, Azure, Vagrant, Linux Admin</p>
+                <p class="text-slate-500 text-sm">Azure, AWS, Vagrant, Linux Admin</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Network Sec</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">Net & Security</p>
-                <p class="text-slate-500 text-sm">pfSense, Kali, Sockets</p>
-            </div>
-
-            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Architecture</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">System Design</p>
-                <p class="text-slate-500 text-sm">DDD, Microservices, REST</p>
-            </div>
-
-            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Core Systems</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Systems</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">Concurrency</p>
-                <p class="text-slate-500 text-sm">Multithreading, Mutexes</p>
+                <p class="text-slate-500 text-sm">Multithreading, Sockets (TCP/UDP)</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Persistence</p>
-                <p class="text-slate-900 dark:text-white font-bold text-lg">Databases</p>
-                <p class="text-slate-500 text-sm">SQL Server, Postgres, JPA</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Security</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Network Sec</p>
+                <p class="text-slate-500 text-sm">Cloudflare, Firewalls, pfSense, XSS</p>
             </div>
 
             <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
-                <p class="text-slate-400 font-mono text-xs mb-2">// Interface & Rendering</p>
+                <p class="text-slate-400 font-mono text-xs mb-2">// Databases</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Relational DBs</p>
+                <p class="text-slate-500 text-sm">Postgres, SQL Server, RDS, SQLite</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Rendering</p>
                 <p class="text-slate-900 dark:text-white font-bold text-lg">SSR & UI</p>
-                <p class="text-slate-500 text-sm">Laravel Blade, Thymeleaf, Razor, Tailwind, Bootstrap, Vue/React</p>
+                <p class="text-slate-500 text-sm">Blade, Thymeleaf, Tailwind, Vue/React</p>
             </div>
 
         </div>

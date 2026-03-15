@@ -11,11 +11,16 @@
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
   <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
+  <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
+  <link rel="preload" as="image" href="../Assets/images/portrait.JPG">
+  <link rel="preload" as="image" href="../Assets/images/finki-logo-short.png">
+  <link rel="preload" as="image" href="../Assets/images/ksb-logo.jpg">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
 
   <script>
-    // 1. Anti-Flash & System Theme Check
+
+    // 2. Anti-Flash & System Theme Check
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark');
     } else {
@@ -25,6 +30,7 @@
     function updateFavicons(isLight) {
       const link = document.getElementById('favicon-main');
       if (!link) return;
+
       const suffix = isLight ? '-light' : '';
       const newHref = `../Assets/favicon/favicon${suffix}.svg`;
 
@@ -33,10 +39,12 @@
       link.parentNode.replaceChild(newLink, link);
     }
 
+    // Listen for System Theme changes while the page is open
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       updateFavicons(e.matches);
     });
 
+    // Initial check
     window.addEventListener('DOMContentLoaded', () => {
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });

@@ -11,6 +11,9 @@
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
   <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
+  <link rel="preload" as="image" href="../Assets/images/portrait.JPG">
+  <link rel="preload" as="image" href="../Assets/images/finki-logo-short.png">
+  <link rel="preload" as="image" href="../Assets/images/ksb-logo.jpg">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
 
@@ -30,22 +33,17 @@
       const suffix = isLight ? '-light' : '';
       const newHref = `../Assets/favicon/favicon${suffix}.svg`;
 
-      // 1. Log to verify (as you were doing)
-      console.log(`Switching favicon to: ${newHref}`);
-
-      // 2. The "Force Refresh" Trick:
-      // We clone the node, change the href, and replace the old one.
       const newLink = link.cloneNode(true);
       newLink.setAttribute('href', newHref);
       link.parentNode.replaceChild(newLink, link);
     }
 
-    // 3. Listen for System Theme changes while the page is open
+    // Listen for System Theme changes while the page is open
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
       updateFavicons(e.matches);
     });
 
-    // 4. Initial check
+    // Initial check
     window.addEventListener('DOMContentLoaded', () => {
       updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
     });
