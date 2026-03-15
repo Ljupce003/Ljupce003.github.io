@@ -54,23 +54,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    /* Smooth Transition Sync */
-    /** {*/
-    /*  transition-property: background-color, border-color, color, fill, stroke;*/
-    /*  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
-    /*  transition-duration: 300ms;*/
-    /*}*/
-
-    .badge {
-      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-      color: #4f46e5;
-    }
-    .dark .badge { color: #818cf8; border-color: rgba(129,140,248,0.2); }
-
     article { position: relative; }
-    .stretched-link::after { position: absolute; inset: 0; content: ''; z-index: 1; }
   </style>
 </head>
 
@@ -360,7 +344,6 @@
           } catch (e) {
             // STEP 2: If Step 1 failed (likely CORS), try 'no-cors'
             // This is a "blind" check. If this succeeds, the server is ALIVE
-            // even if we can't see the 200/404 status.
             try {
               const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
               if(no_cors_response.ok){
