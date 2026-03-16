@@ -11,6 +11,16 @@ const path = require('path');
 const ROOT = __dirname;
 const T    = (...p) => path.join(ROOT, 'templates', ...p);
 
+const baseUrl = 'https://ljupchoangelovski.com';
+const today = new Date().toISOString().split('T')[0];
+
+let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+const staticPages = ['', '/about.html', '/projects/index.html'];
+staticPages.forEach(page => {
+    sitemap += `  <url>\n    <loc>${baseUrl}${page}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${page === '' ? '1.0' : '0.8'}</priority>\n  </url>\n`;
+});
+
 // ─── Load partials ────────────────────────────────────────────────────────────
 const NAV_PARTIAL         = fs.readFileSync(T('partials', 'nav.html'),         'utf8');
 const FOOTER_PARTIAL      = fs.readFileSync(T('partials', 'footer.html'),      'utf8');
@@ -199,6 +209,18 @@ write(
         }
     )
 );
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. Generate projects/index.html
+// ─────────────────────────────────────────────────────────────────────────────
+projects.forEach(project => {
+    sitemap += `  <url>\n    <loc>${baseUrl}/projects/${project.slug}.html</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.7</priority>\n  </url>\n`;
+});
+
+sitemap += `</urlset>`;
+write(path.join(ROOT,"sitemap.xml"),sitemap)
+
 
 console.log(`\n✅  Build complete — ${projects.length} project(s) generated.`);
 console.log('\n📁  To update nav or footer, edit:');
