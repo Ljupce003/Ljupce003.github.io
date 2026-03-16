@@ -212,23 +212,29 @@
         const urls = JSON.parse(urlsAttr.replace(/&quot;/g, '"'));
         let workingUrl = null;
 
-        for (const url of urls) {
-          try {
-            const response = await fetch(url, {cache: 'no-store'});
-            if (response.ok) {
-              workingUrl = url;
-              break;
-            }
-          } catch (e) {
+        // Check for ignore flag
+        const ignoreUrl = urls.find(u => typeof u === 'string' && u.includes('!ignore'));
+
+        if(!ignoreUrl){
+          for (const url of urls) {
             try {
-              const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
-              if(no_cors_response.ok){
+              const response = await fetch(url, { cache: 'no-store' });
+              if (response.ok) {
                 workingUrl = url;
                 break;
               }
+            } catch {
+              // Blind no-cors attempt for third-party sites
+              try {
+                const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+                if(no_cors_response.ok){
+                  workingUrl = url;
+                  break;
+                }
 
-            } catch (noCorsError) {
-              console.warn(`[SmartLink] ${url} is unreachable.`);
+              } catch (noCorsError) {
+                console.warn(`[SmartLink] ${url} is truly unreachable.`);
+              }
             }
           }
         }
@@ -236,24 +242,30 @@
         const dot = btn.querySelector('.status-dot');
         const ping = btn.querySelector('.status-ping');
 
-        if (workingUrl) {
-          btn.href = workingUrl;
+        if (workingUrl || ignoreUrl) {
+          if(workingUrl)
+            btn.href = workingUrl;
+          else if(ignoreUrl)
+            btn.href = ignoreUrl.replace('!ignore', '').trim();
+
           btn.style.pointerEvents = 'auto';
           btn.classList.remove('opacity-50', 'grayscale');
-          if (ping) ping.classList.add('hidden'); // Hide so we can un-hide if it goes down later
+          if (ping) ping.remove();
           if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 status-dot transition-colors duration-500';
         } else {
           btn.href = 'javascript:void(0)';
           btn.style.pointerEvents = 'none';
           btn.classList.add('opacity-50', 'grayscale');
-          if (ping) ping.classList.remove('hidden');
+          if (ping) ping.remove();
           if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 status-dot transition-colors duration-500';
         }
+
       } catch (err) {
-        console.error("Status parse error", err);
+        console.error("Parse error", err);
       }
     }
 
+    // Run immediately and every 30 seconds
     demoBtns.forEach(checkDemoStatus);
     setInterval(() => demoBtns.forEach(checkDemoStatus), 30000);
   });

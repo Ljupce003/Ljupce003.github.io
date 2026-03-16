@@ -348,7 +348,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
         </a>
-        <a href="https://bjovanceva.github.io/Safe-net-game" data-demo-urls="[&quot;https://bjovanceva.github.io/Safe-net-game&quot;]" target="_blank" rel="noopener noreferrer"
+        <a href="https://bjovanceva.github.io/Safe-net-game !ignore" data-demo-urls="[&quot;https://bjovanceva.github.io/Safe-net-game !ignore&quot;]" target="_blank" rel="noopener noreferrer"
                class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5">
               <span class="relative flex h-2.5 w-2.5">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
@@ -427,27 +427,29 @@
         const urls = JSON.parse(urlsAttr.replace(/&quot;/g, '"'));
         let workingUrl = null;
 
-        for (const url of urls) {
-          try {
-            // STEP 1: Try a normal fetch
-            const response = await fetch(url, {cache: 'no-store'});
-            if (response.ok) {
-              console.log(url,"works")
-              workingUrl = url;
-              break;
-            }
-          } catch (e) {
-            // STEP 2: If Step 1 failed (likely CORS), try 'no-cors'
-            // This is a "blind" check. If this succeeds, the server is ALIVE
+        // Check for ignore flag
+        const ignoreUrl = urls.find(u => typeof u === 'string' && u.includes('!ignore'));
+
+        if(!ignoreUrl){
+          for (const url of urls) {
             try {
-              const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
-              if(no_cors_response.ok){
+              const response = await fetch(url, { cache: 'no-store' });
+              if (response.ok) {
                 workingUrl = url;
                 break;
               }
+            } catch {
+              // Blind no-cors attempt for third-party sites
+              try {
+                const no_cors_response = await fetch(url, { mode: 'no-cors', cache: 'no-store' });
+                if(no_cors_response.ok){
+                  workingUrl = url;
+                  break;
+                }
 
-            } catch (noCorsError) {
-              console.warn(`[SmartLink] ${url} is truly unreachable.`);
+              } catch (noCorsError) {
+                console.warn(`[SmartLink] ${url} is truly unreachable.`);
+              }
             }
           }
         }
@@ -455,8 +457,12 @@
         const dot = btn.querySelector('.status-dot');
         const ping = btn.querySelector('.status-ping');
 
-        if (workingUrl) {
-          btn.href = workingUrl;
+        if (workingUrl || ignoreUrl) {
+          if(workingUrl)
+            btn.href = workingUrl;
+          else if(ignoreUrl)
+            btn.href = ignoreUrl.replace('!ignore', '').trim();
+
           btn.style.pointerEvents = 'auto';
           btn.classList.remove('opacity-50', 'grayscale');
           if (ping) ping.remove();
@@ -468,18 +474,15 @@
           if (ping) ping.remove();
           if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 status-dot transition-colors duration-500';
         }
+
       } catch (err) {
         console.error("Parse error", err);
       }
     }
 
-    // 1. Run immediately on page load
+    // Run immediately and every 30 seconds
     demoBtns.forEach(checkDemoStatus);
-
-    // 2. Run again every 30 seconds (30000 milliseconds)
-    setInterval(() => {
-      demoBtns.forEach(checkDemoStatus);
-    }, 30000);
+    setInterval(() => demoBtns.forEach(checkDemoStatus), 30000);
   });
 </script>
 </body>
