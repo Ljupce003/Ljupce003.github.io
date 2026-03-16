@@ -1,35 +1,102 @@
 [
   {
-    "slug": "portfolio-website",
-    "title": "Personal Portfolio Website",
-    "description": "A fully static personal portfolio website built with HTML, Tailwind CSS, and a Node.js build pipeline. Features a home page, about page, and auto-generated project pages from a JSON data file. Designed for GitHub Pages hosting with SEO-friendly pre-rendered HTML.",
-    "technologies": ["HTML", "Tailwind CSS", "Node.js", "JavaScript"],
-    "github": "https://github.com/Ljupce003/Ljupce003.github.io",
-    "demo": "https://ljupce003.github.io"
+    "slug": "study-organizer",
+    "title": "StudyOrganizer – Learning Management System for Courses, Assignments, and Submissions",
+    "description": "StudyOrganizer is a full-stack Learning Management System (LMS) that allows professors to manage courses, publish assignments, upload learning materials, and grade student submissions, while students can submit multiple attempts with attachments and track their progress. The system includes role-based access (student, professor, admin), Markdown-powered notes, course-scoped resources, and an admin panel for managing users and course memberships. The application emphasizes clean architecture, explicit routing, authorization policies, and secure file handling. It is deployed on AWS with an automated provisioning script that configures Nginx, PHP-FPM, HTTPS, and the full Laravel stack.",
+    "technologies": [
+      "Laravel",
+      "PHP",
+      "Blade",
+      "Tailwind CSS",
+      "Laravel Breeze",
+      "Filament (Admin Panel)",
+      "SQLite",
+      "Postgres(hosted on Docker for local dev)",
+      "Markdown (EasyMDE)",
+      "Nginx",
+      "AWS EC2",
+      "AWS RDS",
+      "Cloudflare",
+      "Certbot HTTPS"
+    ],
+    "github": "https://github.com/Ljupce003/StudyOrganizer",
+    "demo": ["https://studyorganizer.ljupchoangelovski.com","ec2-35-157-32-151.eu-central-1.compute.amazonaws.com"]
   },
   {
-    "slug": "student-grade-manager",
-    "title": "Student Grade Manager",
-    "description": "A Java desktop application for managing student grades and academic records. Supports adding students, assigning grades per subject, calculating GPA, and exporting reports. Built with object-oriented principles and a clean Swing-based GUI.",
-    "technologies": ["Java", "OOP", "Swing", "File I/O"],
-    "github": "https://github.com/Ljupce003/student-grade-manager",
+    "slug": "custom-vdom-framework",
+    "title": "Custom Vanilla JS Frontend Framework",
+    "description": "A lightweight, component-based frontend web framework built entirely from scratch in vanilla JavaScript. Designed to explore the underlying mechanics of modern UI libraries, the framework implements a custom Virtual DOM (VDOM) and a custom reconciliation algorithm for efficient DOM updates. It features a complete component architecture supporting state management, stateful components, lifecycle hooks (mounting/unmounting), and event binding. The project encompasses the full library development lifecycle, culminating in the framework being bundled and published to the NPM registry.",
+    "technologies": [
+      "Vanilla JavaScript",
+      "Virtual DOM",
+      "Reconciliation Algorithm",
+      "State Management",
+      "Component Architecture",
+      "NPM Registry",
+      "Library Bundling"
+    ],
+    "github": "https://github.com/Ljupce003/Advanced_Web_Design/tree/main/material/week22/my_projects/vanilla_project",
     "demo": ""
   },
   {
-    "slug": "news-articles-aggregator",
-    "title": "News Articles aggregator",
-    "description": "An interactive web app that visually demonstrates how common sorting and pathfinding algorithms work step-by-step. Supports Bubble Sort, Merge Sort, Quick Sort, and Dijkstra's algorithm. Useful as an educational tool for understanding algorithmic complexity.",
-    "technologies": ["JavaScript", "HTML", "CSS", "Canvas API"],
-    "github": "https://github.com/Ljupce003/algorithm-visualizer",
+    "slug": "portfolio-website",
+    "title": "Personal Portfolio Website (You are Here)",
+    "description": "A fully static personal portfolio website built with HTML, Tailwind CSS, and a Node.js build pipeline. Features a home page, about page, and auto-generated project pages from a JSON data file. Designed for GitHub Pages hosting with SEO-friendly pre-rendered HTML.",
+    "technologies": ["HTML", "Tailwind CSS", "Node.js", "JavaScript"],
+    "github": "https://github.com/Ljupce003/Ljupce003.github.io",
+    "demo": ""
+  },
+  {
+    "slug": "news-aggregator-bookmark-manager",
+    "title": "News Aggregator & Bookmark Manager",
+    "description": "A full-stack ASP.NET Core web application that aggregates news articles from external APIs and allows users to organize them into a personal knowledge collection. Users can bookmark individual articles, group bookmarks into folders, and export selected collections to Excel for offline use. The application follows Onion Architecture with separated Domain, Repository, and Service layers, uses SQL Server for persistent storage, Razor (CSHTML) views for the UI, and integrates external news APIs for real-time content. The system was deployed on Microsoft Azure with both the web application and database hosted in the cloud.",
+    "technologies": [
+      "ASP.NET Core",
+      "C#",
+      "Razor Pages / CSHTML",
+      "Onion Architecture",
+      "SQL Server",
+      "Entity Framework Core",
+      "REST API Integration",
+      "Azure App Service",
+      "Azure SQL Database",
+      "Excel Export (ClosedXML)"
+    ],
+    "github": "https://github.com/Ljupce003/ISproject",
     "demo": ["https://isproject.ljupchoangelovski.com","https://isprojectweb20250823163857-b3btc6aeawbehfb2.switzerlandnorth-01.azurewebsites.net"]
   },
   {
-    "slug": "weather-dashboard",
-    "title": "Weather Dashboard",
-    "description": "A responsive weather dashboard that fetches real-time weather data from the OpenWeatherMap API. Displays current conditions, a 5-day forecast, humidity, wind speed, and dynamic weather icons. Supports city search with location auto-complete.",
-    "technologies": ["JavaScript", "REST API", "HTML", "CSS", "OpenWeatherMap"],
-    "github": "https://github.com/Ljupce003/weather-dashboard",
-    "demo": "https://ljupce003.github.io/weather-dashboard"
+    "slug": "cybersecurity-awareness-game",
+    "title": "Cybersecurity Awareness Game",
+    "description": "An interactive browser-based educational game that teaches players to recognize safe and risky digital behaviors through fast-paced decision making. The game is implemented using the HTML5 Canvas API with all visuals, UI elements, and animations rendered manually through JavaScript. Gameplay is divided into multiple stages using separate canvas contexts: the first two stages focus on password-strength recognition and security choices using dynamically generated text-based challenges, while the third stage introduces image-based cybersecurity scenarios such as phishing detection, social media privacy choices, and software update decisions. The application uses a custom JavaScript game loop for rendering and timing, state management for switching between gameplay phases, and randomized question and image selection to keep each session different. The system also supports multilingual content through a translation layer that dynamically loads interface text and questions. Designed as a lightweight educational game that combines real-time interaction, randomized challenges, and subtle visual cues to train players to evaluate online security situations critically. The game was made by me and my team.",
+    "technologies": [
+      "JavaScript",
+      "HTML5 Canvas API",
+      "HTML",
+      "CSS",
+      "Game Loop Architecture",
+      "State Management",
+      "Randomized Game Logic",
+      "Multilingual UI"
+    ],
+    "github": "https://github.com/bjovanceva/Safe-net-game",
+    "demo": "https://bjovanceva.github.io/Safe-net-game"
+  },
+  {
+    "slug": "mse-analytics",
+    "title": "MSE Analytics",
+    "description": "An intelligent stock analysis and forecasting platform for the Macedonian Stock Exchange. The system features a hybrid architecture that integrates a Spring Boot orchestrator with Python-based AI modules for automated web scraping (Playwright), technical indicator analysis, NLP sentiment processing, and LSTM-driven price predictions. A custom-built monitoring dashboard provides real-time visibility into asynchronous script execution and system health.",
+    "technologies": [
+      "Java (Spring Boot)",
+      "Python (TensorFlow/Pandas)",
+      "Playwright",
+      "Beautiful Soup",
+      "Tailwind CSS",
+      "Highcharts.js",
+      "Maven"
+    ],
+    "github": "https://github.com/Ljupce003/MSE_Analytics",
+    "demo": ""
   }
 ]
 

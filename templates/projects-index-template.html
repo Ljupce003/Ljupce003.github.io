@@ -10,10 +10,10 @@
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
-  <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
-  <link rel="preload" as="image" href="../Assets/images/portrait.JPG">
-  <link rel="preload" as="image" href="../Assets/images/finki-logo-short.png">
-  <link rel="preload" as="image" href="../Assets/images/ksb-logo.jpg">
+  <link rel="prefetch" as="image" href="../Assets/images/logo-hover.png">
+  <link rel="prefetch" as="image" href="../Assets/images/portrait.JPG">
+  <link rel="prefetch" as="image" href="../Assets/images/finki-logo-short.png">
+  <link rel="prefetch" as="image" href="../Assets/images/ksb-logo.jpg">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
 
@@ -54,7 +54,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    }
+
     article { position: relative; }
+
+    .badge {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+      color: #4f46e5;
+    }
+    .dark .badge { color: #818cf8; border-color: rgba(129,140,248,0.2); }
+
+    .stretched-link::after { position: absolute; inset: 0; content: ''; z-index: 1; }
   </style>
 </head>
 
@@ -62,19 +79,23 @@
 
 {{nav}}
 
-<header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
-  <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
-  <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
-  <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
-    A collection of things I've built — from academic coursework to personal experiments.
-  </p>
-</header>
+<div class="flex-1 w-full bg-grid-pattern">
+  <header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
+    <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
+    <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
+    <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
+      A collection of things I've built — from academic coursework to personal experiments.
+    </p>
+  </header>
 
-<main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-    {{projectCards}}
-  </div>
-</main>
+  <main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      {{projectCards}}
+    </div>
+  </main>
+</div>
+
+
 
 {{footer}}
 

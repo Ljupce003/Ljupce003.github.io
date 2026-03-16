@@ -10,10 +10,10 @@
   <link rel="apple-touch-icon" href="../Assets/favicon/apple-touch-icon.png">
   <link rel="manifest" href="../Assets/favicon/site.webmanifest">
 
-  <link rel="preload" as="image" href="../Assets/images/logo-hover.png">
-  <link rel="preload" as="image" href="../Assets/images/portrait.JPG">
-  <link rel="preload" as="image" href="../Assets/images/finki-logo-short.png">
-  <link rel="preload" as="image" href="../Assets/images/ksb-logo.jpg">
+  <link rel="prefetch" as="image" href="../Assets/images/logo-hover.png">
+  <link rel="prefetch" as="image" href="../Assets/images/portrait.JPG">
+  <link rel="prefetch" as="image" href="../Assets/images/finki-logo-short.png">
+  <link rel="prefetch" as="image" href="../Assets/images/ksb-logo.jpg">
 
   <link href="../Assets/css/output.css" rel="stylesheet">
 
@@ -54,7 +54,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    }
+
     article { position: relative; }
+
+    .badge {
+      display: inline-block; padding: 0.2rem 0.65rem; border-radius: 9999px;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+      color: #4f46e5;
+    }
+    .dark .badge { color: #818cf8; border-color: rgba(129,140,248,0.2); }
+
+    .stretched-link::after { position: absolute; inset: 0; content: ''; z-index: 1; }
   </style>
 </head>
 
@@ -130,21 +147,101 @@
   });
 </script>
 
-<header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
-  <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
-  <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
-  <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
-    A collection of things I've built — from academic coursework to personal experiments.
-  </p>
-</header>
+<div class="flex-1 w-full bg-grid-pattern">
+  <header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
+    <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
+    <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
+    <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
+      A collection of things I've built — from academic coursework to personal experiments.
+    </p>
+  </header>
 
-<main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-    <article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+  <main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+      <article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div class="flex items-start justify-between mb-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
+            <a href="study-organizer.html" class="stretched-link focus:outline-none">
+                StudyOrganizer – Learning Management System for Courses, Assignments, and Submissions
+            </a>
+        </h2>
+        <a href="https://github.com/Ljupce003/StudyOrganizer" target="_blank" rel="noopener noreferrer"
+           class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">StudyOrganizer is a full-stack Learning Management System (LMS) that allows professors to manage courses, publish assign…</p>
+
+    <div class="flex flex-wrap gap-1.5 mb-5">
+        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">Laravel</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">PHP</span>
+        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Blade</span>
+        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">Tailwind CSS</span>
+        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+10 more</span>
+    </div>
+
+    <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
+        <a href="study-organizer.html"
+           class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
+            View Details
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </a>
+        <a href="https://studyorganizer.ljupchoangelovski.com" data-demo-urls="[&quot;https://studyorganizer.ljupchoangelovski.com&quot;,&quot;ec2-35-157-32-151.eu-central-1.compute.amazonaws.com&quot;]" target="_blank" rel="noopener noreferrer"
+               class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 status-dot"></span>
+              </span>
+              Demo
+            </a>
+    </div>
+</article>
+<article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div class="flex items-start justify-between mb-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
+            <a href="custom-vdom-framework.html" class="stretched-link focus:outline-none">
+                Custom Vanilla JS Frontend Framework
+            </a>
+        </h2>
+        <a href="https://github.com/Ljupce003/Advanced_Web_Design/tree/main/material/week22/my_projects/vanilla_project" target="_blank" rel="noopener noreferrer"
+           class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">A lightweight, component-based frontend web framework built entirely from scratch in vanilla JavaScript. Designed to exp…</p>
+
+    <div class="flex flex-wrap gap-1.5 mb-5">
+        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">Vanilla JavaScript</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">Virtual DOM</span>
+        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Reconciliation Algorithm</span>
+        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">State Management</span>
+        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+3 more</span>
+    </div>
+
+    <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
+        <a href="custom-vdom-framework.html"
+           class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
+            View Details
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </a>
+        
+    </div>
+</article>
+<article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
     <div class="flex items-start justify-between mb-4">
         <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
             <a href="portfolio-website.html" class="stretched-link focus:outline-none">
-                Personal Portfolio Website
+                Personal Portfolio Website (You are Here)
             </a>
         </h2>
         <a href="https://github.com/Ljupce003/Ljupce003.github.io" target="_blank" rel="noopener noreferrer"
@@ -172,59 +269,17 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
         </a>
-        <a href="https://ljupce003.github.io" data-demo-urls="[&quot;https://ljupce003.github.io&quot;]" target="_blank" rel="noopener noreferrer"
-               class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 status-dot"></span>
-              </span>
-              Demo
-            </a>
-    </div>
-</article>
-<article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-    <div class="flex items-start justify-between mb-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
-            <a href="student-grade-manager.html" class="stretched-link focus:outline-none">
-                Student Grade Manager
-            </a>
-        </h2>
-        <a href="https://github.com/Ljupce003/student-grade-manager" target="_blank" rel="noopener noreferrer"
-           class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-            </svg>
-        </a>
-    </div>
-
-    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">A Java desktop application for managing student grades and academic records. Supports adding students, assigning grades…</p>
-
-    <div class="flex flex-wrap gap-1.5 mb-5">
-        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">Java</span>
-        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">OOP</span>
-        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Swing</span>
-        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">File I/O</span>
-    </div>
-
-    <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
-        <a href="student-grade-manager.html"
-           class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
-            View Details
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-        </a>
         
     </div>
 </article>
 <article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
     <div class="flex items-start justify-between mb-4">
         <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
-            <a href="news-articles-aggregator.html" class="stretched-link focus:outline-none">
-                News Articles aggregator
+            <a href="news-aggregator-bookmark-manager.html" class="stretched-link focus:outline-none">
+                News Aggregator &amp; Bookmark Manager
             </a>
         </h2>
-        <a href="https://github.com/Ljupce003/algorithm-visualizer" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/Ljupce003/ISproject" target="_blank" rel="noopener noreferrer"
            class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
@@ -232,17 +287,18 @@
         </a>
     </div>
 
-    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">An interactive web app that visually demonstrates how common sorting and pathfinding algorithms work step-by-step. Suppo…</p>
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">A full-stack ASP.NET Core web application that aggregates news articles from external APIs and allows users to organize…</p>
 
     <div class="flex flex-wrap gap-1.5 mb-5">
-        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">JavaScript</span>
-        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">HTML</span>
-        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">CSS</span>
-        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">Canvas API</span>
+        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">ASP.NET Core</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">C#</span>
+        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Razor Pages / CSHTML</span>
+        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">Onion Architecture</span>
+        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+6 more</span>
     </div>
 
     <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
-        <a href="news-articles-aggregator.html"
+        <a href="news-aggregator-bookmark-manager.html"
            class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
             View Details
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -262,11 +318,11 @@
 <article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
     <div class="flex items-start justify-between mb-4">
         <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
-            <a href="weather-dashboard.html" class="stretched-link focus:outline-none">
-                Weather Dashboard
+            <a href="cybersecurity-awareness-game.html" class="stretched-link focus:outline-none">
+                Cybersecurity Awareness Game
             </a>
         </h2>
-        <a href="https://github.com/Ljupce003/weather-dashboard" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/bjovanceva/Safe-net-game" target="_blank" rel="noopener noreferrer"
            class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
@@ -274,25 +330,25 @@
         </a>
     </div>
 
-    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">A responsive weather dashboard that fetches real-time weather data from the OpenWeatherMap API. Displays current conditi…</p>
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">An interactive browser-based educational game that teaches players to recognize safe and risky digital behaviors through…</p>
 
     <div class="flex flex-wrap gap-1.5 mb-5">
         <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">JavaScript</span>
-        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">REST API</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">HTML5 Canvas API</span>
         <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">HTML</span>
         <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">CSS</span>
-        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+1 more</span>
+        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+4 more</span>
     </div>
 
     <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
-        <a href="weather-dashboard.html"
+        <a href="cybersecurity-awareness-game.html"
            class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
             View Details
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
         </a>
-        <a href="https://ljupce003.github.io/weather-dashboard" data-demo-urls="[&quot;https://ljupce003.github.io/weather-dashboard&quot;]" target="_blank" rel="noopener noreferrer"
+        <a href="https://bjovanceva.github.io/Safe-net-game" data-demo-urls="[&quot;https://bjovanceva.github.io/Safe-net-game&quot;]" target="_blank" rel="noopener noreferrer"
                class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5">
               <span class="relative flex h-2.5 w-2.5">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
@@ -302,8 +358,47 @@
             </a>
     </div>
 </article>
-  </div>
-</main>
+<article class="group relative flex flex-col bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div class="flex items-start justify-between mb-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors leading-snug pr-4">
+            <a href="mse-analytics.html" class="stretched-link focus:outline-none">
+                MSE Analytics
+            </a>
+        </h2>
+        <a href="https://github.com/Ljupce003/MSE_Analytics" target="_blank" rel="noopener noreferrer"
+           class="relative z-10 shrink-0 text-slate-400 hover:text-slate-900 dark:text-slate-500 dark:hover:text-white transition-colors" title="View on GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+
+    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-5 flex-1">An intelligent stock analysis and forecasting platform for the Macedonian Stock Exchange. The system features a hybrid a…</p>
+
+    <div class="flex flex-wrap gap-1.5 mb-5">
+        <span class="badge bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-200 dark:ring-indigo-500/30">Java (Spring Boot)</span>
+        <span class="badge bg-cyan-50 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 ring-1 ring-cyan-200 dark:ring-cyan-500/30">Python (TensorFlow/Pandas)</span>
+        <span class="badge bg-violet-50 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 ring-1 ring-violet-200 dark:ring-violet-500/30">Playwright</span>
+        <span class="badge bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-500/30">Beautiful Soup</span>
+        <span class="badge bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400">+3 more</span>
+    </div>
+
+    <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700/50 relative z-10">
+        <a href="mse-analytics.html"
+           class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors text-sm font-semibold flex items-center gap-1">
+            View Details
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </a>
+        
+    </div>
+</article>
+    </div>
+  </main>
+</div>
+
+
 
 <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-transparent py-8 mt-auto transition-colors duration-300">
   <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
