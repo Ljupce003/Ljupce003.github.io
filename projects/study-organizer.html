@@ -194,7 +194,7 @@
                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75 status-ping"></span>
                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 status-dot"></span>
             </span>
-            Live Demo
+            <span class="demo-text">Demo</span>
           </a>
       </div>
     </section>
@@ -258,6 +258,7 @@
 
         const dot = btn.querySelector('.status-dot');
         const ping = btn.querySelector('.status-ping');
+        const d_text = btn.querySelector('.demo-text');
 
         if (workingUrl || ignoreUrl) {
           if(workingUrl)
@@ -269,12 +270,14 @@
           btn.classList.remove('opacity-50', 'grayscale');
           if (ping) ping.remove();
           if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 status-dot transition-colors duration-500';
+          if(d_text) d_text.innerText = "Demo Live"
         } else {
           btn.href = 'javascript:void(0)';
           btn.style.pointerEvents = 'none';
           btn.classList.add('opacity-50', 'grayscale');
           if (ping) ping.remove();
           if (dot) dot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 status-dot transition-colors duration-500';
+          if(d_text) d_text.innerText = "Demo Offline"
         }
 
       } catch (err) {

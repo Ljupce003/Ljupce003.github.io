@@ -79,7 +79,7 @@ function renderDemoBtn(demo, isSmall = false) {
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 status-dot"></span>
               </span>
-              Demo
+              <span class="demo-text">Demo</span> 
             </a>`;
     }
 
@@ -90,7 +90,7 @@ function renderDemoBtn(demo, isSmall = false) {
                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75 status-ping"></span>
                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 status-dot"></span>
             </span>
-            Live Demo
+            <span class="demo-text">Demo</span>
           </a>`;
 }
 
