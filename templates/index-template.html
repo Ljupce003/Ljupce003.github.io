@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description"
+          content="Ljupce — Computer Science student and developer. Explore my projects, skills, and background."/>
+    <title>Ljupcho Angelovski</title>
+
+    <link rel="icon" id="favicon-main" type="image/svg+xml" href="Assets/favicon/favicon.svg">
+
+    <!--    <link rel="alternate icon" href="Assets/favicon/favicon.ico">-->
+    <link rel="apple-touch-icon" href="Assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="Assets/favicon/site.webmanifest">
+
+    <link rel="prefetch" as="image" href="Assets/images/logo-hover.png">
+    <link rel="prefetch" as="image" href="Assets/images/portrait.JPG">
+    <link rel="prefetch" as="image" href="Assets/images/finki-logo-short.png">
+    <link rel="prefetch" as="image" href="Assets/images/ksb-logo.jpg">
+
+    <link href="Assets/css/output.css" rel="stylesheet">
+    <script>
+
+        // 2. Anti-Flash & System Theme Check
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function updateFavicons(isLight) {
+            const link = document.getElementById('favicon-main');
+            if (!link) return;
+
+            const suffix = isLight ? '-light' : '';
+            const newHref = `Assets/favicon/favicon${suffix}.svg`;
+
+            const newLink = link.cloneNode(true);
+            newLink.setAttribute('href', newHref);
+            link.parentNode.replaceChild(newLink, link);
+        }
+
+        // Listen for System Theme changes while the page is open
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            updateFavicons(e.matches);
+        });
+
+        // Initial check
+        window.addEventListener('DOMContentLoaded', () => {
+            updateFavicons(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        });
+    </script>
+
+    <style>
+        /* Developer Grid Background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+        }
+
+        /* Smooth transitions for theme switching */
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+
+        /* Sleek card hover instead of a bouncy jump */
+        .skill-card { transition: all 0.2s ease-in-out; }
+        .skill-card:hover { transform: translate(-4px, -4px); box-shadow: 4px 4px 0px rgba(99, 102, 241, 0.5); }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <style>
+        body { background-color: #060d1f; }
+
+        .skill-card { transition: all 0.25s; }
+        .skill-card:hover { border-color: rgba(99, 102, 241, 0.5); background-color: rgba(30, 41, 59, 0.8); transform: translateY(-2px); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-900 dark:bg-[#060d1f] dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+{{nav}}
+
+<main class="flex-1 bg-grid-pattern">
+
+    <section class="relative overflow-hidden border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-24 sm:py-32">
+
+            <div class="flex flex-col md:flex-row gap-12 items-start justify-between">
+                <div class="max-w-2xl">
+<!--                    <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-semibold px-3 py-1 rounded-sm mb-6">-->
+<!--                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>-->
+<!--                        Status: Available for work-->
+<!--                    </div>-->
+
+                    <h1 class="text-5xl sm:text-7xl font-black tracking-tight mb-6 text-slate-900 dark:text-white">
+                        Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Ljupcho.</span>
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl font-light mb-6 text-slate-600 dark:text-slate-400">
+                        Computer Science Student & Developer that tries to build clean and organized backend systems.
+                    </p>
+
+                    <p class="text-slate-500 dark:text-slate-500 mb-10 text-lg leading-relaxed max-w-lg">
+                        I’m a backend-focused developer with a deep interest in Linux administration and infrastructure. Whether I’m architecting APIs, working with template-driven SSR, or configuring CI/CD pipelines, I try to keep a security-first mindset and a genuine love for the logistics of how complex systems actually fit together.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="projects/index.html" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md font-semibold text-sm transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/30">
+                            Explore Projects
+                        </a>
+                        <a href="https://github.com/Ljupce003" target="_blank" class="border-2 border-slate-300 dark:border-slate-700 hover:border-indigo-600 dark:hover:border-indigo-400 text-slate-700 dark:text-slate-300 px-6 py-3 rounded-md font-semibold text-sm transition-all bg-white dark:bg-transparent">
+                            GitHub Profile
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hidden md:block w-64 h-64 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg flex items-center justify-center opacity-50">
+                    <span class="font-mono text-slate-400 text-sm">&lt;!-- Developer Workspace --&gt;</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-24">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tech Stack & Capabilities</h2>
+            <p class="text-slate-500 mt-2">The ecosystems, architectures, and tools I use to build robust platforms.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Enterprise</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Java & C#</p>
+                <p class="text-slate-500 text-sm">Spring Boot, .NET Core, SOLID, DI</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Rapid Development</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">PHP & Laravel</p>
+                <p class="text-slate-500 text-sm">Eloquent ORM, Middleware, Service Container</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Data & AI</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Python</p>
+                <p class="text-slate-500 text-sm">Django, NLP, LSTM, BeautifulSoup</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// DevOps</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Cloud & Docker</p>
+                <p class="text-slate-500 text-sm">Azure, AWS, Vagrant, Linux Admin</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Systems</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Concurrency</p>
+                <p class="text-slate-500 text-sm">Multithreading, Sockets (TCP/UDP)</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Security</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Network Sec</p>
+                <p class="text-slate-500 text-sm">Cloudflare, Firewalls, pfSense, XSS</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Databases</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">Relational DBs</p>
+                <p class="text-slate-500 text-sm">Postgres, SQL Server, RDS, SQLite</p>
+            </div>
+
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+                <p class="text-slate-400 font-mono text-xs mb-2">// Rendering</p>
+                <p class="text-slate-900 dark:text-white font-bold text-lg">SSR & UI</p>
+                <p class="text-slate-500 text-sm">Blade, Thymeleaf, Tailwind, Vue/React</p>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+{{footer}}
+
+</body>
+</html>
+
+
+
