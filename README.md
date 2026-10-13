@@ -29,6 +29,7 @@ There are two “build steps”:
 - `templates/partials/project-card.html` — card layout used on the projects index
 - `projects.json` — project data (`slug`, `title`, `description`, `technologies[]`, `github`, optional `demo`)
 - `build-templates.js` — the generator that injects partials + creates pages
+- `Assets/js/demo-status.js` — shared demo availability checks
 
 ### Generated files (don’t edit manually)
 
@@ -50,4 +51,31 @@ These files are overwritten on every HTML build:
 
 - Theme switching uses Tailwind’s `dark` class mode.
 - The domain is configured via `CNAME`.
+
+### Demo availability on GitHub Pages
+
+Cross-origin demo links use credential-free `no-cors` requests. An opaque
+response shows **Demo Reachable** because the browser hides its HTTP status;
+it cannot confirm that the application is healthy. Network errors leave the
+status unverified, and links remain clickable. The legacy `!ignore` flag skips
+checking and no longer claims that a demo is live.
+
+For a verified application check, set the optional `demoStatusUrl` in
+`projects.json` to a public CORS-enabled endpoint that returns a successful HTTP
+status when healthy, or a non-success HTTP status when unavailable. The response
+body can be JSON or HTML; the check reads only the HTTP status.
+
+The Cybersecurity Awareness Game uses its GitHub Pages homepage as
+`demoStatusUrl`. That page allows cross-origin requests, so a readable HTTP
+success verifies that the static demo is available and shows **Demo Live**.
+
+DriveHub and StudyOrganizer use `/health` on their respective domains. The shared
+Nginx proxy forwards these checks to DriveHub's `/api/health` (app and database
+readiness) and StudyOrganizer's `/up` (Laravel boot health). Nginx adds
+`Access-Control-Allow-Origin: *` on success and error responses, only for these
+public checks. Deploy the updated Nginx configs and portfolio together; no app
+CORS changes are required. Before the proxy is updated, a blocked check falls
+back to **Demo Reachable**.
+
+Run `npm test` to verify availability handling.
 

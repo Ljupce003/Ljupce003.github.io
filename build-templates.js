@@ -69,7 +69,7 @@ function renderBadges(technologies, limit = 99) {
     return badges.join('\n        ');
 }
 
-function renderDemoBtn(demo, isSmall = false) {
+function renderDemoBtn(demo, isSmall = false, demoStatusUrl = '') {
     // If demo is missing, empty string, or empty array, render nothing.
     if (!demo || (Array.isArray(demo) && demo.length === 0) || demo === "") {
         return '';
@@ -80,21 +80,23 @@ function renderDemoBtn(demo, isSmall = false) {
     // Convert array to a string safe for an HTML attribute
     const urlsJson = escapeHtml(JSON.stringify(urls));
     // Use the first URL as the default fallback href
-    const fallbackUrl = escapeHtml(urls[0]);
+    const firstUrl = urls[0].replace('!ignore', '').trim();
+    const fallbackUrl = escapeHtml(/^[a-z][a-z\d+.-]*:/i.test(firstUrl) ? firstUrl : `https://${firstUrl}`);
+    const statusAttr = demoStatusUrl ? ` data-demo-status-url="${escapeHtml(demoStatusUrl)}"` : '';
 
     if (isSmall) {
-        return `<a href="${fallbackUrl}" data-demo-urls="${urlsJson}" target="_blank" rel="noopener noreferrer"
+        return `<a href="${fallbackUrl}" data-demo-urls="${urlsJson}"${statusAttr} target="_blank" rel="noopener noreferrer"
                class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5">
               <span class="relative flex h-2.5 w-2.5">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 status-dot"></span>
               </span>
-              <span class="demo-text">Demo</span> 
+              <span class="demo-text">Demo</span>
             </a>`;
     }
 
     // Full Project Page version (big button with indicator)
-    return `<a href="${fallbackUrl}" data-demo-urls="${urlsJson}" target="_blank" rel="noopener noreferrer"
+    return `<a href="${fallbackUrl}" data-demo-urls="${urlsJson}"${statusAttr} target="_blank" rel="noopener noreferrer"
              class="smart-demo-btn btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-sm">
             <span class="relative flex h-2.5 w-2.5">
                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75 status-ping"></span>
@@ -114,7 +116,7 @@ function renderProjectCard(project) {
         .replace(/{{github}}/g,      escapeHtml(github))
         .replace(/{{description}}/g, escapeHtml(shortDesc))
         .replace(/{{badges}}/g,      renderBadges(technologies, 4))
-        .replace(/{{demoLink}}/g,     renderDemoBtn(demo, true));
+        .replace(/{{demoLink}}/g,     renderDemoBtn(demo, true, project.demoStatusUrl));
 }
 
 // ─── Partial injection ────────────────────────────────────────────────────────
@@ -181,7 +183,7 @@ projects.forEach(project => {
         .replace(/{{description}}/g,     escapeHtml(description))
         .replace(/{{technologies}}/g,    renderBadges(technologies))
         .replace(/{{github}}/g,          escapeHtml(github))
-        .replace(/{{demoLink}}/g,        renderDemoBtn(demo))
+        .replace(/{{demoLink}}/g,        renderDemoBtn(demo, false, project.demoStatusUrl))
         .replace(/{{slug}}/g,            escapeHtml(slug));
 
     html = injectPartials(html, {

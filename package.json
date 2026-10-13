@@ -15,6 +15,7 @@
   "type": "commonjs",
   "main": "build-templates.js",
   "scripts": {
+    "test": "node --test tests/*.test.cjs",
     "build:html": "node build-templates.js",
     "build:css": "npx tailwindcss -i ./input.css -o Assets/css/output.css",
     "watch": "nodemon --watch projects.json --watch templates/ build-templates.js",

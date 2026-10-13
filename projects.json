@@ -19,7 +19,8 @@
       "Node.js Test Runner"
     ],
     "github": "https://github.com/bjovanceva/drive-hub",
-    "demo": "https://drive-hub.ljupchoangelovski.com"
+    "demo": "https://drive-hub.ljupchoangelovski.com",
+    "demoStatusUrl": "https://drive-hub.ljupchoangelovski.com/health"
   },
   {
     "slug": "study-organizer",
@@ -42,7 +43,8 @@
       "Certbot HTTPS"
     ],
     "github": "https://github.com/Ljupce003/StudyOrganizer",
-    "demo": ["https://studyorganizer.ljupchoangelovski.com","ec2-35-157-32-151.eu-central-1.compute.amazonaws.com"]
+    "demo": ["https://studyorganizer.ljupchoangelovski.com","ec2-35-157-32-151.eu-central-1.compute.amazonaws.com"],
+    "demoStatusUrl": "https://studyorganizer.ljupchoangelovski.com/health"
   },
   {
     "slug": "custom-vdom-framework",
@@ -102,7 +104,8 @@
       "Multilingual UI"
     ],
     "github": "https://github.com/bjovanceva/Safe-net-game",
-    "demo": "https://bjovanceva.github.io/Safe-net-game !ignore"
+    "demo": "https://bjovanceva.github.io/Safe-net-game/",
+    "demoStatusUrl": "https://bjovanceva.github.io/Safe-net-game/"
   },
   {
     "slug": "mse-analytics",
