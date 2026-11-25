@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { routes } from '../lib/urls';
+
+const skills = [
+  { category: '// Enterprise', title: 'Java & C#', stack: 'Spring Boot, .NET Core, SOLID, DI' },
+  { category: '// Rapid Development', title: 'PHP & Laravel', stack: 'Eloquent ORM, Middleware, Service Container' },
+  { category: '// Data & AI', title: 'Python', stack: 'Django, NLP, LSTM, BeautifulSoup' },
+  { category: '// DevOps', title: 'Cloud & Docker', stack: 'Azure, AWS, Vagrant, Linux Admin' },
+  { category: '// Systems', title: 'Concurrency', stack: 'Multithreading, Sockets (TCP/UDP)' },
+  { category: '// Security', title: 'Network Sec', stack: 'Cloudflare, Firewalls, pfSense, XSS' },
+  { category: '// Databases', title: 'Relational DBs', stack: 'Postgres, SQL Server, RDS, SQLite' },
+  { category: '// Rendering', title: 'SSR & UI', stack: 'Blade, Thymeleaf, Tailwind, Vue/React' },
+];
+---
+
+<BaseLayout
+  title="Ljupcho Angelovski"
+  description="Ljupce — Computer Science student and developer. Explore my projects, skills, and background."
+  activePage="home"
+  bodyClass="font-sans bg-slate-50 text-slate-900 dark:bg-navy-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300"
+>
+  <main class="flex-1 bg-grid-pattern">
+    <section class="relative overflow-hidden border-b border-slate-200 dark:border-slate-800">
+      <div class="max-w-5xl mx-auto px-6 py-24 sm:py-32">
+        <div class="flex flex-col md:flex-row gap-12 items-start justify-between">
+          <div class="max-w-2xl">
+            <h1 class="text-5xl sm:text-7xl font-black tracking-tight mb-6 text-slate-900 dark:text-white">
+              Hi, I'm <span class="text-indigo-600 dark:text-indigo-400">Ljupcho.</span>
+            </h1>
+
+            <p class="text-xl sm:text-2xl font-light mb-6 text-slate-600 dark:text-slate-400">
+              Computer Science Student &amp; Developer that tries to build clean and organized backend systems.
+            </p>
+
+            <p class="text-slate-500 dark:text-slate-500 mb-10 text-lg leading-relaxed max-w-lg">
+              I’m a backend-focused developer with a deep interest in Linux administration and infrastructure. Whether
+              I’m architecting APIs, working with template-driven SSR, or configuring CI/CD pipelines, I try to keep a
+              security-first mindset and a genuine love for the logistics of how complex systems actually fit together.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <a
+                href={routes.projects()}
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md font-semibold text-sm transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-indigo-500/30"
+              >
+                Explore Projects
+              </a>
+              <a
+                href="https://github.com/Ljupce003"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="border-2 border-slate-300 dark:border-slate-700 hover:border-indigo-600 dark:hover:border-indigo-400 text-slate-700 dark:text-slate-300 px-6 py-3 rounded-md font-semibold text-sm transition-all bg-white dark:bg-transparent"
+              >
+                GitHub Profile
+              </a>
+            </div>
+          </div>
+
+          <div class="hidden md:flex w-64 h-64 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-lg items-center justify-center opacity-50">
+            <span class="font-mono text-slate-400 text-sm">&lt;!-- Developer Workspace --&gt;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-24">
+      <div class="mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tech Stack &amp; Capabilities</h2>
+        <p class="text-slate-500 mt-2">The ecosystems, architectures, and tools I use to build robust platforms.</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        {
+          skills.map((skill) => (
+            <div class="skill-card bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-lg p-5">
+              <p class="text-slate-400 font-mono text-xs mb-2">{skill.category}</p>
+              <p class="text-slate-900 dark:text-white font-bold text-lg">{skill.title}</p>
+              <p class="text-slate-500 text-sm">{skill.stack}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

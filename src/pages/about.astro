@@ -1,0 +1,322 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const education = [
+  {
+    institution: 'Faculty of Computer Science and Engineering',
+    subtitle: 'FINKI — Skopje',
+    url: 'https://www.finki.ukim.mk/',
+    logo: '/Assets/images/finki-logo-short.png',
+    logoAlt: 'FINKI logo',
+    period: '2022 — Present',
+    detail: 'Software engineering and information systems',
+  },
+  {
+    institution: 'Technical High School "Kiro Spandžov - Brko"',
+    subtitle: 'KSB — Kavadarci',
+    url: 'https://souksb.mk/',
+    logo: '/Assets/images/ksb-logo.jpg',
+    logoAlt: 'KSB logo',
+    period: '2018 — 2022',
+    detail: 'Electrician for computer technology and automation',
+  },
+];
+
+const certifications = [
+  {
+    title: 'Full-Stack Web Development Bootcamp - Udemy',
+    status: 'Completed' as const,
+    certificateUrl: 'https://www.udemy.com/certificate/UC-aaa7a00a-3ac9-455b-928d-f72ae6e53da8/',
+    topics: ['HTML', 'CSS', 'Javascript', 'Node.js', 'Express.js', 'Git, VCS', 'Github', 'PostgreSQL', 'React'],
+  },
+  {
+    title: 'Decoding DevOps: Basics to Advanced - Udemy',
+    status: 'In Progress' as const,
+    topics: [
+      'VMs',
+      'Linux',
+      'Vagrant',
+      'Node.js',
+      'Bash',
+      'Networking',
+      'AWS',
+      'CI/CD w Jenkins',
+      'Terraform',
+      'Ansible',
+      'GCP',
+      'Docker',
+      'Kubernetes',
+    ],
+  },
+];
+
+const subjects = [
+  { title: 'Algorithms & Data Structures', topics: ['Java', 'Lists, Stacks, Queues', 'Hash Tables & Trees', 'Graphs'] },
+  { title: 'Object Oriented Programming', topics: ['C++', 'OOP Concepts'] },
+  { title: 'Advanced Programming', topics: ['Java Streams', 'Collections Framework', 'Generics & Lambdas'] },
+  { title: 'Computer Networks', topics: ['OSI Model', 'Network Protocols', 'Wireshark'] },
+  { title: 'Operating Systems', topics: ['Bash Scripting', 'Docker', 'TCP/UDP Sockets'] },
+  { title: 'Databases', topics: ['SQL (DDL/DML/DQL)', 'ER/EER Modeling', 'Normalization', 'Transactions & CTEs'] },
+  { title: 'Software Design & Architecture', topics: ['Microservices', 'Design Patterns', 'Event-Driven Arch'] },
+  { title: 'Web Programming', topics: ['Spring Boot', 'Spring Data/JPA', 'Spring Security', 'Dependency Injection'] },
+  { title: 'E-Commerce', topics: ['React & Hooks', 'Spring REST API', 'JWT', 'Cron Jobs'] },
+  { title: 'Integrated Systems', topics: ['.NET Core', 'Stripe API', 'Azure Hosting'] },
+  { title: 'Human Computer Interaction', topics: ['Django', 'Figma', 'Bootstrap', 'UX Principles'] },
+  { title: 'Intro to Data Science', topics: ['Pandas & Numpy', 'Selenium Scrapping', 'Deep Learning', 'NLP & Transformers'] },
+  { title: 'Video Game Programming', topics: ['Pygame', 'Game Loops', 'Animations'] },
+  { title: 'Open Source Systems', topics: ['PHP', 'Laravel', 'Filament'] },
+  { title: 'Mobile Information Systems', topics: ['Flutter', 'Mobile Development'] },
+  { title: 'Advanced Web Design', topics: ['Vue.js', 'OOP JavaScript', 'Closures'] },
+  { title: 'DevOps', topics: ['Docker', 'Kubernetes', 'Jenkins', 'GitHub'] },
+  { title: 'Service Oriented Architectures', topics: ['Spring Microservices', 'DDD', 'Axon Framework'] },
+  { title: 'Ethical Hacking', topics: ['Network Attacks', 'Firewalls & VMs', 'Protocols'] },
+];
+---
+
+<BaseLayout
+  title="About — Ljupcho Angelovski"
+  description="About Ljupce — CS student at FINKI Skopje. Education, courses, interests and contact."
+  activePage="about"
+  bodyClass="font-sans bg-slate-50 dark:bg-navy-950 text-slate-600 dark:text-slate-300 min-h-screen flex flex-col transition-colors duration-300"
+>
+  <div class="flex-1 w-full bg-grid-pattern">
+    <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-16">
+      <header class="mb-16">
+        <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">
+          Get to know me
+        </p>
+        <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">About Me</h1>
+        <div class="flex flex-col md:flex-row gap-10 items-start">
+          <div class="shrink-0">
+            <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center shadow-xl overflow-hidden">
+              <img src="/Assets/images/portrait.JPG" alt="Ljupcho Angelovski" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-lg mb-4">
+              Hi! I'm <strong class="text-slate-900 dark:text-white">Ljupcho Angelovski</strong>, a Computer Science
+              student at the Faculty of Computer Science and Engineering (
+              <strong class="text-slate-900 dark:text-white">FINKI</strong>) in Skopje, North Macedonia.
+            </p>
+            <div class="space-y-8">
+              <section>
+                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">The Philosophy</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  I'm passionate about writing clean, maintainable code and building things that are actually useful. I
+                  enjoy working across the stack, but my core motivation is curiosity. I don't just want to use tools. I
+                  want to understand the invisible architecture underneath them. Whether I'm designing algorithms,
+                  working with databases, or configuring infrastructure, I need to know exactly how things work under
+                  the hood.
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">The Process</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  I am a perfectionist with a sharp attention to detail. I actively seek out challenging tasks because
+                  the hard stuff is what makes us better developers. When I'm invested in a problem, I will often forget
+                  to take breaks until it's solved. I rarely give up on an issue—if something is proving incredibly
+                  difficult, I simply step away to make a macchiato or a Nescafé 3in1, and then I get right back to it.
+                </p>
+              </section>
+
+              <section>
+                <h3 class="text-lg md:text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">The People</h3>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  The team is just as important as the tech. I thrive when working alongside bright, driven teammates. I
+                  try to bring a gentle, grounded approach to my work, and I am a strict believer in fairness and
+                  collaboration.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Education</h2>
+        </div>
+
+        <div class="space-y-4">
+          {
+            education.map((item) => (
+              <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 hover:border-indigo-500/30">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-3">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center overflow-hidden shrink-0">
+                      <img src={item.logo} alt={item.logoAlt} class="w-full h-full object-cover transition-all" />
+                    </div>
+                    <div>
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-slate-900 dark:text-white underline hover:text-indigo-600 dark:hover:text-indigo-400"
+                      >
+                        <h3 class="font-bold text-lg leading-tight">{item.institution}</h3>
+                      </a>
+                      <p class="text-indigo-500 dark:text-indigo-500 font-medium text-sm">{item.subtitle}</p>
+                    </div>
+                  </div>
+                  <span class="shrink-0 text-slate-500 text-sm font-medium bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full">
+                    {item.period}
+                  </span>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{item.detail}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-8 h-8 rounded-lg bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Certifications &amp; Learning</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {
+            certifications.map((cert) => (
+              <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-all duration-300 group">
+                <div class="flex justify-between items-start gap-4 mb-1">
+                  <h3 class="text-slate-900 dark:text-white font-semibold flex items-start gap-3">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0" />
+                    <span>{cert.title}</span>
+                  </h3>
+                  <span
+                    class={`shrink-0 px-2 py-1 text-[10px] font-bold uppercase tracking-wider rounded border ${
+                      cert.status === 'Completed'
+                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+                        : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20'
+                    }`}
+                  >
+                    {cert.status}
+                  </span>
+                </div>
+
+                {cert.certificateUrl && (
+                  <a
+                    href={cert.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm text-violet-600 dark:text-violet-400 hover:text-violet-700 dark:hover:text-violet-300 font-medium inline-flex items-center gap-1.5 mt-1.5 mb-6 ml-5 transition-colors w-fit"
+                  >
+                    View Certificate
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                )}
+
+                <div class="flex flex-wrap gap-2 mt-auto ml-5">
+                  {cert.topics.map((topic) => (
+                    <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-8 h-8 rounded-lg bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">University Subjects &amp; Technologies</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            subjects.map((subject) => (
+              <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col h-full hover:border-violet-500/30 transition-colors duration-300">
+                <h3 class="text-slate-900 dark:text-white font-semibold mb-5 flex items-start gap-3">
+                  <span class="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0" />
+                  <span>{subject.title}</span>
+                </h3>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  {subject.topics.map((topic) => (
+                    <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="contact" class="max-w-5xl mx-auto scroll-mt-10">
+        <div class="mb-6">
+          <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Connect</h2>
+          <p class="text-slate-500 mt-2">
+            I'm always open to technical discussions or professional opportunities.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900/50 border-2 border-slate-200 dark:border-slate-700 rounded-2xl p-8 transition-all duration-300 hover:border-indigo-500/50">
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="mailto:ljupceangelovski003@gmail.com"
+              class="inline-flex items-center px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-all transform hover:-translate-y-1 active:scale-95 shadow-lg shadow-indigo-500/20"
+            >
+              Email
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ljupcho-angelovski"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-600"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/Ljupce003"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-6 py-3 rounded-lg border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:border-slate-300 dark:hover:border-slate-600"
+            >
+              GitHub
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

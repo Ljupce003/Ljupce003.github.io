@@ -1,0 +1,73 @@
+---
+export interface Props {
+  demo?: string | string[];
+  demoStatusUrl?: string;
+  variant?: 'small' | 'large';
+}
+
+const { demo, demoStatusUrl, variant = 'large' } = Astro.props;
+
+const urls = Array.isArray(demo) ? demo.filter(Boolean) : demo ? [demo] : [];
+const hasDemo = urls.length > 0;
+const firstRaw = hasDemo ? urls[0].replace('!ignore', '').trim() : '';
+const fallbackUrl = firstRaw
+  ? /^[a-z][a-z\d+.-]*:/i.test(firstRaw)
+    ? firstRaw
+    : `https://${firstRaw}`
+  : '';
+const urlsJson = JSON.stringify(urls);
+---
+
+{
+  hasDemo && variant === 'small' && (
+    <a
+      href={fallbackUrl}
+      data-demo-urls={urlsJson}
+      data-demo-status-url={demoStatusUrl || undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="smart-demo-btn text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-sm font-medium flex items-center gap-1.5"
+    >
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75 status-ping" />
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500 status-dot" />
+      </span>
+      <span class="demo-text">Demo</span>
+    </a>
+  )
+}
+
+{
+  hasDemo && variant === 'large' && (
+    <a
+      href={fallbackUrl}
+      data-demo-urls={urlsJson}
+      data-demo-status-url={demoStatusUrl || undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="smart-demo-btn btn-primary inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-sm"
+    >
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75 status-ping" />
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 status-dot" />
+      </span>
+      <span class="demo-text">Demo</span>
+    </a>
+  )
+}
+
+<script>
+  import { initDemoStatusPolling } from '../lib/demo-status';
+
+  let cleanup: (() => void) | undefined;
+  const start = () => {
+    cleanup?.();
+    cleanup = initDemoStatusPolling(document);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+</script>

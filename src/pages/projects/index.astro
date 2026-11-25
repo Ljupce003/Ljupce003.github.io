@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getAllProjects } from '../../lib/projects';
+
+const projects = await getAllProjects();
+---
+
+<BaseLayout
+  title="Projects — Ljupcho Angelovski"
+  description="Browse all of Ljupce's projects — web apps, tools, and experiments."
+  activePage="projects"
+>
+  <div class="flex-1 w-full bg-grid-pattern">
+    <header class="max-w-5xl mx-auto w-full px-6 pt-16 pb-10">
+      <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm tracking-widest uppercase mb-3">My Work</p>
+      <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Projects</h1>
+      <p class="text-slate-600 dark:text-slate-400 text-lg max-w-xl">
+        A collection of things I've built — from academic coursework to personal experiments.
+      </p>
+    </header>
+
+    <main class="flex-1 max-w-5xl mx-auto w-full px-6 pb-20">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </main>
+  </div>
+</BaseLayout>
